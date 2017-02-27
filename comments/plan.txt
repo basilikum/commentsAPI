@@ -1,0 +1,44 @@
+site
+ - url: https://www.youtube.com
+
+site
+ - url: http://www.zeit.de
+
+query_rule
+ - site
+ - suburl: /watch
+ - query_params: [v]
+
+
+commentablesource
+ - site
+ - suburl: /watch?v=Lmq6yQd6WTs
+
+
+commentablesource
+ - site
+ - suburl: /mobilitaet/2017-02/autorennen-mord-urteil-berlin-raser
+
+
+board
+ - commentablesource
+ - created
+ - user
+
+
+topic
+ - board
+ - created
+ - owner
+ - title
+
+
+post
+ - topic
+ - created
+ - owner
+ - text
+ - parent
+ - likes
+ - dislikes
+

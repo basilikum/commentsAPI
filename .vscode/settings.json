@@ -1,0 +1,5 @@
+// Place your settings in this file to overwrite default and user settings.
+{
+    "python.pythonPath": "/home/bastian/.virtualenvs/cmm/bin/python",
+    "python.autoComplete.extraPaths": ["/home/bastian/dev/CommentsRest/comments"]
+}
