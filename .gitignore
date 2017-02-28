@@ -65,7 +65,7 @@ target/
 /comments/media/streams
 /comments/media/voices
 /comments/data/lectures.json
-
+/.virtualenv
 
 *.env
 .nfs*

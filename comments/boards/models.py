@@ -7,12 +7,12 @@ from django.db import models
 
 class Site(models.Model):
     id = models.CharField(max_length=7, primary_key=True)
-    url = models.URLField(max_length=100, unique=True, db_index=True)
+    netloc = models.URLField(max_length=100, unique=True, db_index=True)
     creator = models.ForeignKey(settings.AUTH_USER_MODEL, models.SET_NULL, null=True, blank=True, related_name='sites')
     created = models.DateTimeField(auto_now_add=True)
 
     def __unicode__(self):
-        return self.url
+        return self.netloc
 
 
 class QueryRule(models.Model):
@@ -23,7 +23,7 @@ class QueryRule(models.Model):
     created = models.DateTimeField(auto_now_add=True)
 
     def __unicode__(self):
-        return '{}{}?{}='.format(self.site.url, self.path, self.param)
+        return '{}{}?{}='.format(self.site.netloc, self.path, self.param)
 
 
 class Board(models.Model):
