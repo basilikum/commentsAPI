@@ -1,0 +1,2054 @@
+{
+    "linked_from": [], 
+    "sub_urls": {
+        "gesellschaft": {
+            "linked_from": [], 
+            "sub_urls": {
+                "index": {
+                    "linked_from": [
+                        "", 
+                        "", 
+                        ""
+                    ], 
+                    "sub_urls": {}, 
+                    "linked_to": []
+                }, 
+                "2017-03": {
+                    "linked_from": [], 
+                    "sub_urls": {
+                        "sicherheit-raser-moerder-kommissare-fischer-im-recht": {
+                            "linked_from": [
+                                "", 
+                                "", 
+                                "", 
+                                "", 
+                                "", 
+                                "", 
+                                "", 
+                                ""
+                            ], 
+                            "sub_urls": {}, 
+                            "linked_to": []
+                        }, 
+                        "fake-news-selfie-merkel-modamani-urteil": {
+                            "linked_from": [
+                                "", 
+                                "", 
+                                ""
+                            ], 
+                            "sub_urls": {}, 
+                            "linked_to": []
+                        }, 
+                        "syrien-kinder-psychische-stoerungen-buergerkrieg-save-the-children": {
+                            "linked_from": [
+                                "", 
+                                ""
+                            ], 
+                            "sub_urls": {}, 
+                            "linked_to": []
+                        }, 
+                        "gleichstellung-frauen-maenner-unbezahlte-arbeit-gutachten": {
+                            "linked_from": [
+                                "", 
+                                "", 
+                                ""
+                            ], 
+                            "sub_urls": {}, 
+                            "linked_to": []
+                        }, 
+                        "casa-verdi-altersheim-musik-fs": {
+                            "linked_from": [
+                                "", 
+                                "", 
+                                ""
+                            ], 
+                            "sub_urls": {}, 
+                            "linked_to": []
+                        }, 
+                        "kaschmir-srinagar-jammu-bevoelkerung-post-tramatischer-stress-fs": {
+                            "linked_from": [
+                                "", 
+                                ""
+                            ], 
+                            "sub_urls": {}, 
+                            "linked_to": []
+                        }
+                    }, 
+                    "linked_to": []
+                }, 
+                "zeitgeschehen": {
+                    "linked_from": [], 
+                    "sub_urls": {
+                        "2017-03": {
+                            "linked_from": [], 
+                            "sub_urls": {
+                                "wuppertal-gymnasium-gebet-muslime-verbot": {
+                                    "linked_from": [
+                                        "", 
+                                        "", 
+                                        "", 
+                                        "", 
+                                        "", 
+                                        "", 
+                                        "", 
+                                        "", 
+                                        ""
+                                    ], 
+                                    "sub_urls": {}, 
+                                    "linked_to": []
+                                }, 
+                                "prozess-gruppe-freital-dresden-rechtsextremismus-terroristische-vereinigung": {
+                                    "linked_from": [
+                                        "", 
+                                        "", 
+                                        ""
+                                    ], 
+                                    "sub_urls": {}, 
+                                    "linked_to": []
+                                }
+                            }, 
+                            "linked_to": []
+                        }
+                    }, 
+                    "linked_to": []
+                }
+            }, 
+            "linked_to": []
+        }, 
+        "zeit-magazin": {
+            "linked_from": [], 
+            "sub_urls": {
+                "index": {
+                    "linked_from": [
+                        "", 
+                        "", 
+                        ""
+                    ], 
+                    "sub_urls": {}, 
+                    "linked_to": []
+                }, 
+                "2017": {
+                    "linked_from": [], 
+                    "sub_urls": {
+                        "08": {
+                            "linked_from": [], 
+                            "sub_urls": {
+                                "michael-wollny-pianist-jazz-liebe-musik-nachtfahrten": {
+                                    "linked_from": [
+                                        "", 
+                                        ""
+                                    ], 
+                                    "sub_urls": {}, 
+                                    "linked_to": []
+                                }, 
+                                "aelterwerden-kolumnist-harald-martenstein": {
+                                    "linked_from": [
+                                        "", 
+                                        "", 
+                                        ""
+                                    ], 
+                                    "sub_urls": {}, 
+                                    "linked_to": []
+                                }
+                            }, 
+                            "linked_to": []
+                        }
+                    }, 
+                    "linked_to": []
+                }, 
+                "essen-trinken": {
+                    "linked_from": [], 
+                    "sub_urls": {
+                        "2017-03": {
+                            "linked_from": [], 
+                            "sub_urls": {
+                                "pizzaschnecken-blattspinat-paprika-rezept": {
+                                    "linked_from": [
+                                        "", 
+                                        "", 
+                                        ""
+                                    ], 
+                                    "sub_urls": {}, 
+                                    "linked_to": []
+                                }
+                            }, 
+                            "linked_to": []
+                        }
+                    }, 
+                    "linked_to": []
+                }
+            }, 
+            "linked_to": []
+        }, 
+        "angebote": {
+            "linked_from": [], 
+            "sub_urls": {
+                "partnersuche": {
+                    "linked_from": [], 
+                    "sub_urls": {
+                        "index": {
+                            "linked_from": [
+                                "", 
+                                "", 
+                                ""
+                            ], 
+                            "sub_urls": {}, 
+                            "linked_to": []
+                        }
+                    }, 
+                    "linked_to": []
+                }, 
+                "schule": {
+                    "linked_from": [], 
+                    "sub_urls": {
+                        "index": {
+                            "linked_from": [
+                                ""
+                            ], 
+                            "sub_urls": {}, 
+                            "linked_to": []
+                        }
+                    }, 
+                    "linked_to": []
+                }, 
+                "zeit-magazin": {
+                    "linked_from": [], 
+                    "sub_urls": {
+                        "ullstein-fuenf": {
+                            "linked_from": [], 
+                            "sub_urls": {
+                                "index": {
+                                    "linked_from": [
+                                        ""
+                                    ], 
+                                    "sub_urls": {}, 
+                                    "linked_to": []
+                                }
+                            }, 
+                            "linked_to": []
+                        }
+                    }, 
+                    "linked_to": []
+                }, 
+                "buchtipp": {
+                    "linked_from": [], 
+                    "sub_urls": {
+                        "index": {
+                            "linked_from": [
+                                ""
+                            ], 
+                            "sub_urls": {}, 
+                            "linked_to": []
+                        }
+                    }, 
+                    "linked_to": []
+                }, 
+                "senioren-ratgeber": {
+                    "linked_from": [
+                        ""
+                    ], 
+                    "sub_urls": {}, 
+                    "linked_to": []
+                }
+            }, 
+            "linked_to": []
+        }, 
+        "zeit-geschichte": {
+            "linked_from": [], 
+            "sub_urls": {
+                "2017": {
+                    "linked_from": [], 
+                    "sub_urls": {
+                        "01": {
+                            "linked_from": [], 
+                            "sub_urls": {
+                                "ghetto-lodz-juden-zwangsarbeit-lebensbedingungen": {
+                                    "linked_from": [
+                                        "", 
+                                        "", 
+                                        ""
+                                    ], 
+                                    "sub_urls": {}, 
+                                    "linked_to": []
+                                }
+                            }, 
+                            "linked_to": []
+                        }
+                    }, 
+                    "linked_to": []
+                }
+            }, 
+            "linked_to": []
+        }, 
+        "archiv": {
+            "linked_from": [
+                "", 
+                ""
+            ], 
+            "sub_urls": {}, 
+            "linked_to": []
+        }, 
+        "video": {
+            "linked_from": [
+                "", 
+                ""
+            ], 
+            "sub_urls": {
+                "2010-03": {
+                    "linked_from": [], 
+                    "sub_urls": {
+                        "70186496001": {
+                            "linked_from": [], 
+                            "sub_urls": {
+                                "news-ueberblick-zdf-nachrichten-heute-xpress": {
+                                    "linked_from": [
+                                        ""
+                                    ], 
+                                    "sub_urls": {}, 
+                                    "linked_to": []
+                                }
+                            }, 
+                            "linked_to": []
+                        }
+                    }, 
+                    "linked_to": []
+                }, 
+                "2017-03": {
+                    "linked_from": [], 
+                    "sub_urls": {
+                        "5349310077001": {
+                            "linked_from": [], 
+                            "sub_urls": {
+                                "nato-broeckelt-das-buendnis": {
+                                    "linked_from": [
+                                        ""
+                                    ], 
+                                    "sub_urls": {}, 
+                                    "linked_to": []
+                                }
+                            }, 
+                            "linked_to": []
+                        }, 
+                        "5350916557001": {
+                            "linked_from": [], 
+                            "sub_urls": {
+                                "deutsch-tuerkische-beziehungen-tuerkischer-aussenminister-avu-o-lu-tritt-in-hamburg-auf": {
+                                    "linked_from": [
+                                        ""
+                                    ], 
+                                    "sub_urls": {}, 
+                                    "linked_to": []
+                                }
+                            }, 
+                            "linked_to": []
+                        }, 
+                        "5349403085001": {
+                            "linked_from": [], 
+                            "sub_urls": {
+                                "martin-schulz-hoeheres-bafoeg-und-ehe-fuer-alle": {
+                                    "linked_from": [
+                                        ""
+                                    ], 
+                                    "sub_urls": {}, 
+                                    "linked_to": []
+                                }
+                            }, 
+                            "linked_to": []
+                        }
+                    }, 
+                    "linked_to": []
+                }
+            }, 
+            "linked_to": []
+        }, 
+        "impressum": {
+            "linked_from": [], 
+            "sub_urls": {
+                "index": {
+                    "linked_from": [
+                        ""
+                    ], 
+                    "sub_urls": {}, 
+                    "linked_to": []
+                }
+            }, 
+            "linked_to": []
+        }, 
+        "sport": {
+            "linked_from": [
+                ""
+            ], 
+            "sub_urls": {
+                "index": {
+                    "linked_from": [
+                        "", 
+                        ""
+                    ], 
+                    "sub_urls": {}, 
+                    "linked_to": []
+                }, 
+                "2017-03": {
+                    "linked_from": [], 
+                    "sub_urls": {
+                        "champions-league-bayern-muenchen-arsenal-london-rueckspiel": {
+                            "linked_from": [
+                                "", 
+                                "", 
+                                ""
+                            ], 
+                            "sub_urls": {}, 
+                            "linked_to": []
+                        }, 
+                        "walter-roehrl-rallye-weltmeister-deutschland-geburtstag": {
+                            "linked_from": [
+                                "", 
+                                "", 
+                                ""
+                            ], 
+                            "sub_urls": {}, 
+                            "linked_to": []
+                        }, 
+                        "fc-arsenal-champions-league-fc-bayern-england-fans-stimmung": {
+                            "linked_from": [
+                                "", 
+                                "", 
+                                ""
+                            ], 
+                            "sub_urls": {}, 
+                            "linked_to": []
+                        }
+                    }, 
+                    "linked_to": []
+                }
+            }, 
+            "linked_to": []
+        }, 
+        "campus": {
+            "linked_from": [], 
+            "sub_urls": {
+                "index": {
+                    "linked_from": [
+                        "", 
+                        "", 
+                        ""
+                    ], 
+                    "sub_urls": {}, 
+                    "linked_to": []
+                }, 
+                "2017": {
+                    "linked_from": [], 
+                    "sub_urls": {
+                        "02": {
+                            "linked_from": [], 
+                            "sub_urls": {
+                                "freiraeume-universitaet-besetzen-studenten": {
+                                    "linked_from": [
+                                        "", 
+                                        "", 
+                                        ""
+                                    ], 
+                                    "sub_urls": {}, 
+                                    "linked_to": []
+                                }
+                            }, 
+                            "linked_to": []
+                        }, 
+                        "s1": {
+                            "linked_from": [], 
+                            "sub_urls": {
+                                "einstellungstests-assessment-center-vorstellungsgespraech": {
+                                    "linked_from": [
+                                        "", 
+                                        "", 
+                                        ""
+                                    ], 
+                                    "sub_urls": {}, 
+                                    "linked_to": []
+                                }
+                            }, 
+                            "linked_to": []
+                        }
+                    }, 
+                    "linked_to": []
+                }, 
+                "2017-03": {
+                    "linked_from": [], 
+                    "sub_urls": {
+                        "bundestagswahl-2017-martin-schulz-spd-kandidat-fragen-live": {
+                            "linked_from": [
+                                ""
+                            ], 
+                            "sub_urls": {}, 
+                            "linked_to": []
+                        }
+                    }, 
+                    "linked_to": []
+                }, 
+                "angebote": {
+                    "linked_from": [], 
+                    "sub_urls": {
+                        "10-fragen-an-den-personaler": {
+                            "linked_from": [], 
+                            "sub_urls": {
+                                "01-2017": {
+                                    "linked_from": [], 
+                                    "sub_urls": {
+                                        "index": {
+                                            "linked_from": [
+                                                ""
+                                            ], 
+                                            "sub_urls": {}, 
+                                            "linked_to": []
+                                        }
+                                    }, 
+                                    "linked_to": []
+                                }
+                            }, 
+                            "linked_to": []
+                        }
+                    }, 
+                    "linked_to": []
+                }
+            }, 
+            "linked_to": []
+        }, 
+        "entdecken": {
+            "linked_from": [], 
+            "sub_urls": {
+                "index": {
+                    "linked_from": [
+                        "", 
+                        "", 
+                        ""
+                    ], 
+                    "sub_urls": {}, 
+                    "linked_to": []
+                }, 
+                "2017-03": {
+                    "linked_from": [], 
+                    "sub_urls": {
+                        "banksy-the-walled-off-hotel-westjordanland-fs": {
+                            "linked_from": [
+                                "", 
+                                ""
+                            ], 
+                            "sub_urls": {}, 
+                            "linked_to": []
+                        }
+                    }, 
+                    "linked_to": []
+                }
+            }, 
+            "linked_to": []
+        }, 
+        "index": {
+            "linked_from": [
+                "", 
+                "", 
+                ""
+            ], 
+            "sub_urls": {}, 
+            "linked_to": []
+        }, 
+        "karriere": {
+            "linked_from": [], 
+            "sub_urls": {
+                "index": {
+                    "linked_from": [
+                        "", 
+                        "", 
+                        ""
+                    ], 
+                    "sub_urls": {}, 
+                    "linked_to": []
+                }, 
+                "beruf": {
+                    "linked_from": [], 
+                    "sub_urls": {
+                        "2017-02": {
+                            "linked_from": [], 
+                            "sub_urls": {
+                                "thomas-weimann-internationale-haftbefehle-manager-interview": {
+                                    "linked_from": [
+                                        "", 
+                                        "", 
+                                        ""
+                                    ], 
+                                    "sub_urls": {}, 
+                                    "linked_to": []
+                                }, 
+                                "netzwerken-karriere-vorteil-frauen": {
+                                    "linked_from": [
+                                        "", 
+                                        "", 
+                                        ""
+                                    ], 
+                                    "sub_urls": {}, 
+                                    "linked_to": []
+                                }
+                            }, 
+                            "linked_to": []
+                        }, 
+                        "2017-03": {
+                            "linked_from": [], 
+                            "sub_urls": {
+                                "flugzeugbau-leichtflugzeug-beruf-ausbildung-gehalt": {
+                                    "linked_from": [
+                                        "", 
+                                        ""
+                                    ], 
+                                    "sub_urls": {}, 
+                                    "linked_to": []
+                                }
+                            }, 
+                            "linked_to": []
+                        }
+                    }, 
+                    "linked_to": []
+                }
+            }, 
+            "linked_to": []
+        }, 
+        "leserartikel": {
+            "linked_from": [], 
+            "sub_urls": {
+                "index": {
+                    "linked_from": [
+                        ""
+                    ], 
+                    "sub_urls": {}, 
+                    "linked_to": []
+                }
+            }, 
+            "linked_to": []
+        }, 
+        "studium": {
+            "linked_from": [], 
+            "sub_urls": {
+                "rankings": {
+                    "linked_from": [], 
+                    "sub_urls": {
+                        "index": {
+                            "linked_from": [
+                                ""
+                            ], 
+                            "sub_urls": {}, 
+                            "linked_to": []
+                        }
+                    }, 
+                    "linked_to": []
+                }
+            }, 
+            "linked_to": []
+        }, 
+        "christ-und-welt": {
+            "linked_from": [
+                ""
+            ], 
+            "sub_urls": {}, 
+            "linked_to": []
+        }, 
+        "thema": {
+            "linked_from": [], 
+            "sub_urls": {
+                "nahverkehr": {
+                    "linked_from": [
+                        ""
+                    ], 
+                    "sub_urls": {}, 
+                    "linked_to": []
+                }, 
+                "apple": {
+                    "linked_from": [
+                        ""
+                    ], 
+                    "sub_urls": {}, 
+                    "linked_to": []
+                }, 
+                "bundestagswahl": {
+                    "linked_from": [
+                        ""
+                    ], 
+                    "sub_urls": {}, 
+                    "linked_to": []
+                }, 
+                "nsa-affaere": {
+                    "linked_from": [
+                        ""
+                    ], 
+                    "sub_urls": {}, 
+                    "linked_to": []
+                }, 
+                "familienleben": {
+                    "linked_from": [
+                        ""
+                    ], 
+                    "sub_urls": {}, 
+                    "linked_to": []
+                }, 
+                "soziale-ungleichheit": {
+                    "linked_from": [
+                        ""
+                    ], 
+                    "sub_urls": {}, 
+                    "linked_to": []
+                }, 
+                "doping": {
+                    "linked_from": [
+                        ""
+                    ], 
+                    "sub_urls": {}, 
+                    "linked_to": []
+                }, 
+                "weltraum": {
+                    "linked_from": [
+                        ""
+                    ], 
+                    "sub_urls": {}, 
+                    "linked_to": []
+                }, 
+                "d17": {
+                    "linked_from": [
+                        ""
+                    ], 
+                    "sub_urls": {}, 
+                    "linked_to": []
+                }, 
+                "elbvertiefung-newsletter": {
+                    "linked_from": [
+                        ""
+                    ], 
+                    "sub_urls": {}, 
+                    "linked_to": []
+                }, 
+                "bundesliga": {
+                    "linked_from": [
+                        ""
+                    ], 
+                    "sub_urls": {}, 
+                    "linked_to": []
+                }, 
+                "artenschutz": {
+                    "linked_from": [
+                        ""
+                    ], 
+                    "sub_urls": {}, 
+                    "linked_to": []
+                }, 
+                "champions-league": {
+                    "linked_from": [
+                        ""
+                    ], 
+                    "sub_urls": {}, 
+                    "linked_to": []
+                }, 
+                "liebe-und-sex": {
+                    "linked_from": [
+                        ""
+                    ], 
+                    "sub_urls": {}, 
+                    "linked_to": []
+                }, 
+                "islamischer-staat": {
+                    "linked_from": [
+                        ""
+                    ], 
+                    "sub_urls": {}, 
+                    "linked_to": []
+                }, 
+                "bachelor": {
+                    "linked_from": [
+                        ""
+                    ], 
+                    "sub_urls": {}, 
+                    "linked_to": []
+                }, 
+                "niederlande": {
+                    "linked_from": [
+                        ""
+                    ], 
+                    "sub_urls": {}, 
+                    "linked_to": []
+                }, 
+                "arbeitsrecht-fragen": {
+                    "linked_from": [
+                        ""
+                    ], 
+                    "sub_urls": {}, 
+                    "linked_to": []
+                }, 
+                "donald-trump": {
+                    "linked_from": [
+                        ""
+                    ], 
+                    "sub_urls": {}, 
+                    "linked_to": []
+                }, 
+                "fluechtling": {
+                    "linked_from": [
+                        ""
+                    ], 
+                    "sub_urls": {}, 
+                    "linked_to": []
+                }, 
+                "martin-schulz": {
+                    "linked_from": [
+                        "", 
+                        ""
+                    ], 
+                    "sub_urls": {}, 
+                    "linked_to": []
+                }, 
+                "facebook": {
+                    "linked_from": [
+                        ""
+                    ], 
+                    "sub_urls": {}, 
+                    "linked_to": []
+                }, 
+                "tuerkei": {
+                    "linked_from": [
+                        ""
+                    ], 
+                    "sub_urls": {}, 
+                    "linked_to": []
+                }, 
+                "vw-affaere": {
+                    "linked_from": [
+                        ""
+                    ], 
+                    "sub_urls": {}, 
+                    "linked_to": []
+                }
+            }, 
+            "linked_to": []
+        }, 
+        "digital": {
+            "linked_from": [], 
+            "sub_urls": {
+                "index": {
+                    "linked_from": [
+                        "", 
+                        "", 
+                        ""
+                    ], 
+                    "sub_urls": {}, 
+                    "linked_to": []
+                }, 
+                "2017-03": {
+                    "linked_from": [], 
+                    "sub_urls": {
+                        "wikileaks-cia-dokumente-cyberspionage-hacking": {
+                            "linked_from": [
+                                "", 
+                                "", 
+                                ""
+                            ], 
+                            "sub_urls": {}, 
+                            "linked_to": []
+                        }
+                    }, 
+                    "linked_to": []
+                }, 
+                "internet": {
+                    "linked_from": [], 
+                    "sub_urls": {
+                        "2017-03": {
+                            "linked_from": [], 
+                            "sub_urls": {
+                                "kindesmissbrauch-bbc-recherche-facebook-polizei-meldung": {
+                                    "linked_from": [
+                                        "", 
+                                        "", 
+                                        ""
+                                    ], 
+                                    "sub_urls": {}, 
+                                    "linked_to": []
+                                }, 
+                                "us-wahl-cambridge-analytica-donald-trump-widerspruch": {
+                                    "linked_from": [
+                                        "", 
+                                        "", 
+                                        ""
+                                    ], 
+                                    "sub_urls": {}, 
+                                    "linked_to": []
+                                }
+                            }, 
+                            "linked_to": []
+                        }
+                    }, 
+                    "linked_to": []
+                }
+            }, 
+            "linked_to": []
+        }, 
+        "2017": {
+            "linked_from": [], 
+            "sub_urls": {
+                "10": {
+                    "linked_from": [], 
+                    "sub_urls": {
+                        "diabetes-pubertaet-insulin-blutzucker-krankheit-jugend-alltag": {
+                            "linked_from": [
+                                "", 
+                                "", 
+                                ""
+                            ], 
+                            "sub_urls": {}, 
+                            "linked_to": []
+                        }, 
+                        "trevor-noah-komiker-suedafrika-usa": {
+                            "linked_from": [
+                                "", 
+                                "", 
+                                ""
+                            ], 
+                            "sub_urls": {}, 
+                            "linked_to": []
+                        }
+                    }, 
+                    "linked_to": []
+                }, 
+                "08": {
+                    "linked_from": [], 
+                    "sub_urls": {
+                        "perfektionismus-toleranz-macken-vollkommen-unperfekt": {
+                            "linked_from": [
+                                "", 
+                                "", 
+                                ""
+                            ], 
+                            "sub_urls": {}, 
+                            "linked_to": []
+                        }
+                    }, 
+                    "linked_to": []
+                }, 
+                "09": {
+                    "linked_from": [], 
+                    "sub_urls": {
+                        "kunstmarkt-christies-dirk-boll-deutschland-kunstexport": {
+                            "linked_from": [
+                                "", 
+                                "", 
+                                ""
+                            ], 
+                            "sub_urls": {}, 
+                            "linked_to": []
+                        }
+                    }, 
+                    "linked_to": []
+                }, 
+                "07": {
+                    "linked_from": [], 
+                    "sub_urls": {
+                        "segeltrip-san-blas-inseln-karibik": {
+                            "linked_from": [
+                                "", 
+                                "", 
+                                ""
+                            ], 
+                            "sub_urls": {}, 
+                            "linked_to": []
+                        }
+                    }, 
+                    "linked_to": []
+                }
+            }, 
+            "linked_to": []
+        }, 
+        "wissen": {
+            "linked_from": [], 
+            "sub_urls": {
+                "index": {
+                    "linked_from": [
+                        "", 
+                        "", 
+                        ""
+                    ], 
+                    "sub_urls": {}, 
+                    "linked_to": []
+                }, 
+                "gesundheit": {
+                    "linked_from": [], 
+                    "sub_urls": {
+                        "2017-02": {
+                            "linked_from": [], 
+                            "sub_urls": {
+                                "us-pharmaindustrie-donald-trump-obamacare-medikamente-gesundheitswesen": {
+                                    "linked_from": [
+                                        ""
+                                    ], 
+                                    "sub_urls": {}, 
+                                    "linked_to": []
+                                }
+                            }, 
+                            "linked_to": []
+                        }
+                    }, 
+                    "linked_to": []
+                }, 
+                "2017-03": {
+                    "linked_from": [], 
+                    "sub_urls": {
+                        "sentinel-2b-esa-satellit-mission-copernicus-erdbeobachtung": {
+                            "linked_from": [
+                                "", 
+                                "", 
+                                ""
+                            ], 
+                            "sub_urls": {}, 
+                            "linked_to": []
+                        }
+                    }, 
+                    "linked_to": []
+                }
+            }, 
+            "linked_to": []
+        }, 
+        "teilchen-blog": {
+            "linked_from": [], 
+            "sub_urls": {
+                "index": {
+                    "linked_from": [
+                        ""
+                    ], 
+                    "sub_urls": {}, 
+                    "linked_to": []
+                }
+            }, 
+            "linked_to": []
+        }, 
+        "kultur": {
+            "linked_from": [], 
+            "sub_urls": {
+                "index": {
+                    "linked_from": [
+                        "", 
+                        "", 
+                        ""
+                    ], 
+                    "sub_urls": {}, 
+                    "linked_to": []
+                }, 
+                "2017-03": {
+                    "linked_from": [], 
+                    "sub_urls": {
+                        "rechtspopulismus-alphabet-rechte-kampfbegriffe": {
+                            "linked_from": [
+                                ""
+                            ], 
+                            "sub_urls": {}, 
+                            "linked_to": []
+                        }
+                    }, 
+                    "linked_to": []
+                }, 
+                "literatur": {
+                    "linked_from": [], 
+                    "sub_urls": {
+                        "index": {
+                            "linked_from": [
+                                ""
+                            ], 
+                            "sub_urls": {}, 
+                            "linked_to": []
+                        }, 
+                        "2017-03": {
+                            "linked_from": [], 
+                            "sub_urls": {
+                                "willkommen-gelobten-land-joerg-armbruster-deutschsprachige-juden-israel": {
+                                    "linked_from": [
+                                        "", 
+                                        "", 
+                                        ""
+                                    ], 
+                                    "sub_urls": {}, 
+                                    "linked_to": []
+                                }
+                            }, 
+                            "linked_to": []
+                        }
+                    }, 
+                    "linked_to": []
+                }, 
+                "film": {
+                    "linked_from": [], 
+                    "sub_urls": {
+                        "index": {
+                            "linked_from": [
+                                ""
+                            ], 
+                            "sub_urls": {}, 
+                            "linked_to": []
+                        }, 
+                        "2017-03": {
+                            "linked_from": [], 
+                            "sub_urls": {
+                                "kong-skull-island-blockbuster-film-oscargewinner-independent-kino": {
+                                    "linked_from": [
+                                        "", 
+                                        "", 
+                                        ""
+                                    ], 
+                                    "sub_urls": {}, 
+                                    "linked_to": []
+                                }
+                            }, 
+                            "linked_to": []
+                        }
+                    }, 
+                    "linked_to": []
+                }, 
+                "2012-03": {
+                    "linked_from": [], 
+                    "sub_urls": {
+                        "fs-momente": {
+                            "linked_from": [
+                                "", 
+                                ""
+                            ], 
+                            "sub_urls": {}, 
+                            "linked_to": []
+                        }
+                    }, 
+                    "linked_to": []
+                }, 
+                "musik": {
+                    "linked_from": [], 
+                    "sub_urls": {
+                        "index": {
+                            "linked_from": [
+                                ""
+                            ], 
+                            "sub_urls": {}, 
+                            "linked_to": []
+                        }, 
+                        "2017-03": {
+                            "linked_from": [], 
+                            "sub_urls": {
+                                "agit-pop-musik-politik-donald-trump-widerstand": {
+                                    "linked_from": [
+                                        "", 
+                                        "", 
+                                        ""
+                                    ], 
+                                    "sub_urls": {}, 
+                                    "linked_to": []
+                                }
+                            }, 
+                            "linked_to": []
+                        }
+                    }, 
+                    "linked_to": []
+                }, 
+                "kunst": {
+                    "linked_from": [], 
+                    "sub_urls": {
+                        "index": {
+                            "linked_from": [
+                                ""
+                            ], 
+                            "sub_urls": {}, 
+                            "linked_to": []
+                        }
+                    }, 
+                    "linked_to": []
+                }
+            }, 
+            "linked_to": []
+        }, 
+        "foto": {
+            "linked_from": [], 
+            "sub_urls": {
+                "index": {
+                    "linked_from": [
+                        "", 
+                        "", 
+                        ""
+                    ], 
+                    "sub_urls": {}, 
+                    "linked_to": []
+                }
+            }, 
+            "linked_to": []
+        }, 
+        "freitext": {
+            "linked_from": [
+                ""
+            ], 
+            "sub_urls": {
+                "2017": {
+                    "linked_from": [], 
+                    "sub_urls": {
+                        "03": {
+                            "linked_from": [], 
+                            "sub_urls": {
+                                "07": {
+                                    "linked_from": [], 
+                                    "sub_urls": {
+                                        "belarus-osteuropa-feigheit-protest-martinowitsch": {
+                                            "linked_from": [
+                                                "", 
+                                                ""
+                                            ], 
+                                            "sub_urls": {}, 
+                                            "linked_to": []
+                                        }
+                                    }, 
+                                    "linked_to": []
+                                }
+                            }, 
+                            "linked_to": []
+                        }
+                    }, 
+                    "linked_to": []
+                }
+            }, 
+            "linked_to": []
+        }, 
+        "serie": {
+            "linked_from": [], 
+            "sub_urls": {
+                "jung-und-links": {
+                    "linked_from": [
+                        ""
+                    ], 
+                    "sub_urls": {}, 
+                    "linked_to": []
+                }, 
+                "gesellschaftskritik": {
+                    "linked_from": [
+                        ""
+                    ], 
+                    "sub_urls": {}, 
+                    "linked_to": []
+                }, 
+                "fratzschers-verteilungsfragen": {
+                    "linked_from": [
+                        ""
+                    ], 
+                    "sub_urls": {}, 
+                    "linked_to": []
+                }, 
+                "gesetz-der-strasse": {
+                    "linked_from": [
+                        ""
+                    ], 
+                    "sub_urls": {}, 
+                    "linked_to": []
+                }, 
+                "frisch-renoviert": {
+                    "linked_from": [
+                        ""
+                    ], 
+                    "sub_urls": {}, 
+                    "linked_to": []
+                }, 
+                "beziehungen": {
+                    "linked_from": [
+                        ""
+                    ], 
+                    "sub_urls": {}, 
+                    "linked_to": []
+                }, 
+                "unterschaetzte-stadt": {
+                    "linked_from": [
+                        ""
+                    ], 
+                    "sub_urls": {}, 
+                    "linked_to": []
+                }, 
+                "beruf-der-woche": {
+                    "linked_from": [
+                        ""
+                    ], 
+                    "sub_urls": {}, 
+                    "linked_to": []
+                }, 
+                "magnum": {
+                    "linked_from": [
+                        ""
+                    ], 
+                    "sub_urls": {}, 
+                    "linked_to": []
+                }, 
+                "chefsache": {
+                    "linked_from": [
+                        ""
+                    ], 
+                    "sub_urls": {}, 
+                    "linked_to": []
+                }, 
+                "Flopulaer": {
+                    "linked_from": [
+                        ""
+                    ], 
+                    "sub_urls": {}, 
+                    "linked_to": []
+                }
+            }, 
+            "linked_to": []
+        }, 
+        "hamburg": {
+            "linked_from": [], 
+            "sub_urls": {
+                "index": {
+                    "linked_from": [
+                        "", 
+                        "", 
+                        ""
+                    ], 
+                    "sub_urls": {}, 
+                    "linked_to": []
+                }, 
+                "stadtleben": {
+                    "linked_from": [], 
+                    "sub_urls": {
+                        "2017-03": {
+                            "linked_from": [], 
+                            "sub_urls": {
+                                "elbvertiefung-07-03-17": {
+                                    "linked_from": [
+                                        "", 
+                                        "", 
+                                        ""
+                                    ], 
+                                    "sub_urls": {}, 
+                                    "linked_to": []
+                                }
+                            }, 
+                            "linked_to": []
+                        }
+                    }, 
+                    "linked_to": []
+                }
+            }, 
+            "linked_to": []
+        }, 
+        "news": {
+            "linked_from": [], 
+            "sub_urls": {
+                "index": {
+                    "linked_from": [
+                        ""
+                    ], 
+                    "sub_urls": {}, 
+                    "linked_to": []
+                }, 
+                "2017-03": {
+                    "linked_from": [], 
+                    "sub_urls": {
+                        "08": {
+                            "linked_from": [], 
+                            "sub_urls": {
+                                "wahlen-cavusoglu-kritisiert-deutschland-vor-treffen-mit-gabriel-scharf-08000403": {
+                                    "linked_from": [
+                                        ""
+                                    ], 
+                                    "sub_urls": {}, 
+                                    "linked_to": []
+                                }, 
+                                "eu-erneute-schlappe-fuer-may-oberhaus-fordert-vetorecht-zu-brexit-deal-08000603": {
+                                    "linked_from": [
+                                        ""
+                                    ], 
+                                    "sub_urls": {}, 
+                                    "linked_to": []
+                                }
+                            }, 
+                            "linked_to": []
+                        }, 
+                        "07": {
+                            "linked_from": [], 
+                            "sub_urls": {
+                                "geschichte-kalenderblatt-2017-8-maerz-07235802": {
+                                    "linked_from": [
+                                        ""
+                                    ], 
+                                    "sub_urls": {}, 
+                                    "linked_to": []
+                                }, 
+                                "tennis-tennis-thron-ist-fuer-kerber-erneut-in-reichweite-07135204": {
+                                    "linked_from": [
+                                        ""
+                                    ], 
+                                    "sub_urls": {}, 
+                                    "linked_to": []
+                                }, 
+                                "frankreich-berater-von-macron-tritt-wegen-pharma-taetigkeit-zurueck-07234003": {
+                                    "linked_from": [
+                                        ""
+                                    ], 
+                                    "sub_urls": {}, 
+                                    "linked_to": []
+                                }, 
+                                "deutschland-juncker-nennt-erdogans-nazi-vergleich-eine-frechheit-07235203": {
+                                    "linked_from": [
+                                        ""
+                                    ], 
+                                    "sub_urls": {}, 
+                                    "linked_to": []
+                                }, 
+                                "fussball-real-madrid-nach-31-gegen-neapel-im-viertelfinale-07224804": {
+                                    "linked_from": [
+                                        ""
+                                    ], 
+                                    "sub_urls": {}, 
+                                    "linked_to": []
+                                }, 
+                                "tennis-serena-williams-sagt-indian-wells-ab--kerber-wieder-nummer-eins-07231402": {
+                                    "linked_from": [
+                                        ""
+                                    ], 
+                                    "sub_urls": {}, 
+                                    "linked_to": []
+                                }
+                            }, 
+                            "linked_to": []
+                        }
+                    }, 
+                    "linked_to": []
+                }
+            }, 
+            "linked_to": []
+        }, 
+        "spiele": {
+            "linked_from": [], 
+            "sub_urls": {
+                "index": {
+                    "linked_from": [
+                        "", 
+                        "", 
+                        ""
+                    ], 
+                    "sub_urls": {}, 
+                    "linked_to": []
+                }
+            }, 
+            "linked_to": []
+        }, 
+        "mobilitaet": {
+            "linked_from": [], 
+            "sub_urls": {
+                "index": {
+                    "linked_from": [
+                        "", 
+                        "", 
+                        ""
+                    ], 
+                    "sub_urls": {}, 
+                    "linked_to": []
+                }, 
+                "2017-03": {
+                    "linked_from": [], 
+                    "sub_urls": {
+                        "hauptstadtflughafen-ber-chef-muehlenfeld-raeumt-posten": {
+                            "linked_from": [
+                                "", 
+                                "", 
+                                ""
+                            ], 
+                            "sub_urls": {}, 
+                            "linked_to": []
+                        }
+                    }, 
+                    "linked_to": []
+                }
+            }, 
+            "linked_to": []
+        }, 
+        "hilfe": {
+            "linked_from": [], 
+            "sub_urls": {
+                "hilfe": {
+                    "linked_from": [
+                        "", 
+                        ""
+                    ], 
+                    "sub_urls": {}, 
+                    "linked_to": []
+                }, 
+                "datenschutz": {
+                    "linked_from": [
+                        ""
+                    ], 
+                    "sub_urls": {}, 
+                    "linked_to": []
+                }
+            }, 
+            "linked_to": []
+        }, 
+        "administratives": {
+            "linked_from": [], 
+            "sub_urls": {
+                "agb-kommentare-artikel": {
+                    "linked_from": [
+                        ""
+                    ], 
+                    "sub_urls": {}, 
+                    "linked_to": []
+                }, 
+                "printbanderole": {
+                    "linked_from": [], 
+                    "sub_urls": {
+                        "inhaltstemplate": {
+                            "linked_from": [
+                                ""
+                            ], 
+                            "sub_urls": {}, 
+                            "linked_to": []
+                        }
+                    }, 
+                    "linked_to": []
+                }
+            }, 
+            "linked_to": []
+        }, 
+        "blogs": {
+            "linked_from": [], 
+            "sub_urls": {
+                "index": {
+                    "linked_from": [
+                        ""
+                    ], 
+                    "sub_urls": {}, 
+                    "linked_to": []
+                }
+            }, 
+            "linked_to": []
+        }, 
+        "wirtschaft": {
+            "linked_from": [], 
+            "sub_urls": {
+                "index": {
+                    "linked_from": [
+                        "", 
+                        "", 
+                        ""
+                    ], 
+                    "sub_urls": {}, 
+                    "linked_to": []
+                }, 
+                "2017-02": {
+                    "linked_from": [], 
+                    "sub_urls": {
+                        "agenda-2010-spd-martin-schulz-arbeit-niedriglohnsektor-effekte-deutschland": {
+                            "linked_from": [
+                                "", 
+                                ""
+                            ], 
+                            "sub_urls": {}, 
+                            "linked_to": []
+                        }
+                    }, 
+                    "linked_to": []
+                }, 
+                "2017-03": {
+                    "linked_from": [], 
+                    "sub_urls": {
+                        "china-industriepolitik-europaeische-unternehmen-diskriminierung": {
+                            "linked_from": [
+                                "", 
+                                "", 
+                                ""
+                            ], 
+                            "sub_urls": {}, 
+                            "linked_to": []
+                        }, 
+                        "china-wirtschaft-donald-trump-sorge": {
+                            "linked_from": [
+                                "", 
+                                "", 
+                                ""
+                            ], 
+                            "sub_urls": {}, 
+                            "linked_to": []
+                        }
+                    }, 
+                    "linked_to": []
+                }, 
+                "unternehmen": {
+                    "linked_from": [], 
+                    "sub_urls": {
+                        "2017-03": {
+                            "linked_from": [], 
+                            "sub_urls": {
+                                "peugeot-opel-uebernahme-arbeitsplaetze-streichen": {
+                                    "linked_from": [
+                                        "", 
+                                        "", 
+                                        ""
+                                    ], 
+                                    "sub_urls": {}, 
+                                    "linked_to": []
+                                }
+                            }, 
+                            "linked_to": []
+                        }
+                    }, 
+                    "linked_to": []
+                }
+            }, 
+            "linked_to": []
+        }, 
+        "schlagworte": {
+            "linked_from": [], 
+            "sub_urls": {
+                "index": {
+                    "linked_from": [], 
+                    "sub_urls": {
+                        "A": {
+                            "linked_from": [], 
+                            "sub_urls": {
+                                "index": {
+                                    "linked_from": [
+                                        ""
+                                    ], 
+                                    "sub_urls": {}, 
+                                    "linked_to": []
+                                }
+                            }, 
+                            "linked_to": []
+                        }
+                    }, 
+                    "linked_to": []
+                }
+            }, 
+            "linked_to": []
+        }, 
+        "politik": {
+            "linked_from": [], 
+            "sub_urls": {
+                "index": {
+                    "linked_from": [
+                        "", 
+                        "", 
+                        ""
+                    ], 
+                    "sub_urls": {}, 
+                    "linked_to": []
+                }, 
+                "deutschland": {
+                    "linked_from": [], 
+                    "sub_urls": {
+                        "2017-03": {
+                            "linked_from": [], 
+                            "sub_urls": {
+                                "ausbildungsfoerderung-martin-schulz-bafoeg-studium": {
+                                    "linked_from": [
+                                        ""
+                                    ], 
+                                    "sub_urls": {}, 
+                                    "linked_to": []
+                                }
+                            }, 
+                            "linked_to": []
+                        }
+                    }, 
+                    "linked_to": []
+                }, 
+                "ausland": {
+                    "linked_from": [], 
+                    "sub_urls": {
+                        "2017-02": {
+                            "linked_from": [], 
+                            "sub_urls": {
+                                "mauer-mexiko-usa-grenze-fs": {
+                                    "linked_from": [
+                                        "", 
+                                        "", 
+                                        ""
+                                    ], 
+                                    "sub_urls": {}, 
+                                    "linked_to": []
+                                }
+                            }, 
+                            "linked_to": []
+                        }, 
+                        "2017-03": {
+                            "linked_from": [], 
+                            "sub_urls": {
+                                "mevluet-cavusoglu-hamburg-rede-deutschland-tuerkei": {
+                                    "linked_from": [
+                                        "", 
+                                        "", 
+                                        "", 
+                                        "", 
+                                        "", 
+                                        "", 
+                                        ""
+                                    ], 
+                                    "sub_urls": {}, 
+                                    "linked_to": []
+                                }, 
+                                "mevluet-cavusoglu-hamburg-wahlkampfauftritt-tuerkei-aussenminister": {
+                                    "linked_from": [
+                                        "", 
+                                        "", 
+                                        ""
+                                    ], 
+                                    "sub_urls": {}, 
+                                    "linked_to": []
+                                }, 
+                                "usa-obamacare-krankenversicherung-gesundheitssystem-faq": {
+                                    "linked_from": [
+                                        "", 
+                                        "", 
+                                        ""
+                                    ], 
+                                    "sub_urls": {}, 
+                                    "linked_to": []
+                                }, 
+                                "ungarn-fluechtlinge-festsetzung-transitzonen-parlament": {
+                                    "linked_from": [
+                                        "", 
+                                        "", 
+                                        ""
+                                    ], 
+                                    "sub_urls": {}, 
+                                    "linked_to": []
+                                }, 
+                                "oberhaus-brexit-theresa-may-grossbritannien": {
+                                    "linked_from": [
+                                        "", 
+                                        "", 
+                                        ""
+                                    ], 
+                                    "sub_urls": {}, 
+                                    "linked_to": []
+                                }, 
+                                "frankreich-francois-fillon-privatkredit-bestechlichkeit-vorwurf": {
+                                    "linked_from": [
+                                        "", 
+                                        "", 
+                                        ""
+                                    ], 
+                                    "sub_urls": {}, 
+                                    "linked_to": []
+                                }
+                            }, 
+                            "linked_to": []
+                        }
+                    }, 
+                    "linked_to": []
+                }
+            }, 
+            "linked_to": []
+        }, 
+        "zeit-wissen": {
+            "linked_from": [], 
+            "sub_urls": {
+                "2017": {
+                    "linked_from": [], 
+                    "sub_urls": {
+                        "02": {
+                            "linked_from": [], 
+                            "sub_urls": {
+                                "chris-bangle-autodesigner-bmw-ferrari": {
+                                    "linked_from": [
+                                        "", 
+                                        "", 
+                                        ""
+                                    ], 
+                                    "sub_urls": {}, 
+                                    "linked_to": []
+                                }
+                            }, 
+                            "linked_to": []
+                        }
+                    }, 
+                    "linked_to": []
+                }
+            }, 
+            "linked_to": []
+        }
+    }, 
+    "linked_to": [
+        "index", 
+        "angebote/partnersuche/index", 
+        "angebote/partnersuche/index", 
+        "archiv", 
+        "politik/index", 
+        "gesellschaft/index", 
+        "wirtschaft/index", 
+        "kultur/index", 
+        "kultur/literatur/index", 
+        "kultur/film/index", 
+        "kultur/musik/index", 
+        "kultur/kunst/index", 
+        "angebote/zeit-magazin/ullstein-fuenf/index", 
+        "angebote/buchtipp/index", 
+        "wissen/index", 
+        "digital/index", 
+        "campus/index", 
+        "campus/angebote/10-fragen-an-den-personaler/01-2017/index", 
+        "karriere/index", 
+        "entdecken/index", 
+        "sport", 
+        "spiele/index", 
+        "mobilitaet/index", 
+        "hamburg/index", 
+        "zeit-magazin/index", 
+        "thema/niederlande", 
+        "thema/tuerkei", 
+        "thema/d17", 
+        "kultur/musik/2017-03/agit-pop-musik-politik-donald-trump-widerstand", 
+        "kultur/musik/2017-03/agit-pop-musik-politik-donald-trump-widerstand", 
+        "kultur/musik/2017-03/agit-pop-musik-politik-donald-trump-widerstand", 
+        "politik/ausland/2017-03/mevluet-cavusoglu-hamburg-rede-deutschland-tuerkei", 
+        "politik/ausland/2017-03/mevluet-cavusoglu-hamburg-rede-deutschland-tuerkei", 
+        "politik/ausland/2017-03/mevluet-cavusoglu-hamburg-rede-deutschland-tuerkei", 
+        "digital/2017-03/wikileaks-cia-dokumente-cyberspionage-hacking", 
+        "digital/2017-03/wikileaks-cia-dokumente-cyberspionage-hacking", 
+        "digital/2017-03/wikileaks-cia-dokumente-cyberspionage-hacking", 
+        "gesellschaft/zeitgeschehen/2017-03/prozess-gruppe-freital-dresden-rechtsextremismus-terroristische-vereinigung", 
+        "gesellschaft/zeitgeschehen/2017-03/prozess-gruppe-freital-dresden-rechtsextremismus-terroristische-vereinigung", 
+        "gesellschaft/zeitgeschehen/2017-03/prozess-gruppe-freital-dresden-rechtsextremismus-terroristische-vereinigung", 
+        "politik/ausland/2017-02/mauer-mexiko-usa-grenze-fs", 
+        "politik/ausland/2017-02/mauer-mexiko-usa-grenze-fs", 
+        "politik/ausland/2017-02/mauer-mexiko-usa-grenze-fs", 
+        "sport/2017-03/champions-league-bayern-muenchen-arsenal-london-rueckspiel", 
+        "sport/2017-03/champions-league-bayern-muenchen-arsenal-london-rueckspiel", 
+        "sport/2017-03/champions-league-bayern-muenchen-arsenal-london-rueckspiel", 
+        "kultur/film/2017-03/kong-skull-island-blockbuster-film-oscargewinner-independent-kino", 
+        "kultur/film/2017-03/kong-skull-island-blockbuster-film-oscargewinner-independent-kino", 
+        "kultur/film/2017-03/kong-skull-island-blockbuster-film-oscargewinner-independent-kino", 
+        "gesellschaft/zeitgeschehen/2017-03/wuppertal-gymnasium-gebet-muslime-verbot", 
+        "gesellschaft/2017-03/sicherheit-raser-moerder-kommissare-fischer-im-recht", 
+        "wirtschaft/2017-02/agenda-2010-spd-martin-schulz-arbeit-niedriglohnsektor-effekte-deutschland", 
+        "gesellschaft/zeitgeschehen/2017-03/wuppertal-gymnasium-gebet-muslime-verbot", 
+        "gesellschaft/2017-03/sicherheit-raser-moerder-kommissare-fischer-im-recht", 
+        "politik/ausland/2017-03/mevluet-cavusoglu-hamburg-rede-deutschland-tuerkei", 
+        "politik/ausland/2017-03/ungarn-fluechtlinge-festsetzung-transitzonen-parlament", 
+        "gesellschaft/zeitgeschehen/2017-03/wuppertal-gymnasium-gebet-muslime-verbot", 
+        "gesellschaft/2017-03/syrien-kinder-psychische-stoerungen-buergerkrieg-save-the-children", 
+        "gesellschaft/2017-03/sicherheit-raser-moerder-kommissare-fischer-im-recht", 
+        "gesellschaft/2017-03/sicherheit-raser-moerder-kommissare-fischer-im-recht", 
+        "gesellschaft/2017-03/sicherheit-raser-moerder-kommissare-fischer-im-recht", 
+        "thema/martin-schulz", 
+        "thema/martin-schulz", 
+        "campus/2017-03/bundestagswahl-2017-martin-schulz-spd-kandidat-fragen-live", 
+        "politik/deutschland/2017-03/ausbildungsfoerderung-martin-schulz-bafoeg-studium", 
+        "zeit-geschichte/2017/01/ghetto-lodz-juden-zwangsarbeit-lebensbedingungen", 
+        "zeit-geschichte/2017/01/ghetto-lodz-juden-zwangsarbeit-lebensbedingungen", 
+        "zeit-geschichte/2017/01/ghetto-lodz-juden-zwangsarbeit-lebensbedingungen", 
+        "karriere/beruf/2017-03/flugzeugbau-leichtflugzeug-beruf-ausbildung-gehalt", 
+        "karriere/beruf/2017-03/flugzeugbau-leichtflugzeug-beruf-ausbildung-gehalt", 
+        "video/2017-03/5349310077001/nato-broeckelt-das-buendnis", 
+        "video/2017-03/5350916557001/deutsch-tuerkische-beziehungen-tuerkischer-aussenminister-avu-o-lu-tritt-in-hamburg-auf", 
+        "video/2010-03/70186496001/news-ueberblick-zdf-nachrichten-heute-xpress", 
+        "video/2017-03/5349403085001/martin-schulz-hoeheres-bafoeg-und-ehe-fuer-alle", 
+        "video", 
+        "politik/index", 
+        "thema/bundestagswahl", 
+        "thema/islamischer-staat", 
+        "thema/donald-trump", 
+        "politik/index", 
+        "politik/ausland/2017-03/oberhaus-brexit-theresa-may-grossbritannien", 
+        "politik/ausland/2017-03/oberhaus-brexit-theresa-may-grossbritannien", 
+        "politik/ausland/2017-03/oberhaus-brexit-theresa-may-grossbritannien", 
+        "politik/ausland/2017-03/frankreich-francois-fillon-privatkredit-bestechlichkeit-vorwurf", 
+        "politik/ausland/2017-03/frankreich-francois-fillon-privatkredit-bestechlichkeit-vorwurf", 
+        "politik/ausland/2017-03/frankreich-francois-fillon-privatkredit-bestechlichkeit-vorwurf", 
+        "politik/ausland/2017-03/usa-obamacare-krankenversicherung-gesundheitssystem-faq", 
+        "politik/ausland/2017-03/usa-obamacare-krankenversicherung-gesundheitssystem-faq", 
+        "politik/ausland/2017-03/usa-obamacare-krankenversicherung-gesundheitssystem-faq", 
+        "wirtschaft/index", 
+        "thema/soziale-ungleichheit", 
+        "serie/fratzschers-verteilungsfragen", 
+        "wirtschaft/index", 
+        "wirtschaft/2017-03/china-industriepolitik-europaeische-unternehmen-diskriminierung", 
+        "wirtschaft/2017-03/china-industriepolitik-europaeische-unternehmen-diskriminierung", 
+        "wirtschaft/2017-03/china-industriepolitik-europaeische-unternehmen-diskriminierung", 
+        "wirtschaft/unternehmen/2017-03/peugeot-opel-uebernahme-arbeitsplaetze-streichen", 
+        "wirtschaft/unternehmen/2017-03/peugeot-opel-uebernahme-arbeitsplaetze-streichen", 
+        "wirtschaft/unternehmen/2017-03/peugeot-opel-uebernahme-arbeitsplaetze-streichen", 
+        "wirtschaft/2017-03/china-wirtschaft-donald-trump-sorge", 
+        "wirtschaft/2017-03/china-wirtschaft-donald-trump-sorge", 
+        "wirtschaft/2017-03/china-wirtschaft-donald-trump-sorge", 
+        "2017/10/trevor-noah-komiker-suedafrika-usa", 
+        "2017/10/trevor-noah-komiker-suedafrika-usa", 
+        "2017/10/trevor-noah-komiker-suedafrika-usa", 
+        "2017/08/perfektionismus-toleranz-macken-vollkommen-unperfekt", 
+        "2017/08/perfektionismus-toleranz-macken-vollkommen-unperfekt", 
+        "2017/08/perfektionismus-toleranz-macken-vollkommen-unperfekt", 
+        "gesellschaft/index", 
+        "thema/fluechtling", 
+        "thema/familienleben", 
+        "gesellschaft/index", 
+        "gesellschaft/2017-03/casa-verdi-altersheim-musik-fs", 
+        "gesellschaft/2017-03/casa-verdi-altersheim-musik-fs", 
+        "gesellschaft/2017-03/casa-verdi-altersheim-musik-fs", 
+        "gesellschaft/2017-03/gleichstellung-frauen-maenner-unbezahlte-arbeit-gutachten", 
+        "gesellschaft/2017-03/gleichstellung-frauen-maenner-unbezahlte-arbeit-gutachten", 
+        "gesellschaft/2017-03/gleichstellung-frauen-maenner-unbezahlte-arbeit-gutachten", 
+        "gesellschaft/2017-03/fake-news-selfie-merkel-modamani-urteil", 
+        "gesellschaft/2017-03/fake-news-selfie-merkel-modamani-urteil", 
+        "gesellschaft/2017-03/fake-news-selfie-merkel-modamani-urteil", 
+        "politik/ausland/2017-03/mevluet-cavusoglu-hamburg-rede-deutschland-tuerkei", 
+        "politik/ausland/2017-03/mevluet-cavusoglu-hamburg-rede-deutschland-tuerkei", 
+        "gesellschaft/zeitgeschehen/2017-03/wuppertal-gymnasium-gebet-muslime-verbot", 
+        "gesellschaft/zeitgeschehen/2017-03/wuppertal-gymnasium-gebet-muslime-verbot", 
+        "gesellschaft/zeitgeschehen/2017-03/wuppertal-gymnasium-gebet-muslime-verbot", 
+        "gesellschaft/zeitgeschehen/2017-03/wuppertal-gymnasium-gebet-muslime-verbot", 
+        "politik/ausland/2017-03/ungarn-fluechtlinge-festsetzung-transitzonen-parlament", 
+        "politik/ausland/2017-03/ungarn-fluechtlinge-festsetzung-transitzonen-parlament", 
+        "gesellschaft/2017-03/sicherheit-raser-moerder-kommissare-fischer-im-recht", 
+        "gesellschaft/2017-03/sicherheit-raser-moerder-kommissare-fischer-im-recht", 
+        "gesellschaft/2017-03/sicherheit-raser-moerder-kommissare-fischer-im-recht", 
+        "gesellschaft/zeitgeschehen/2017-03/wuppertal-gymnasium-gebet-muslime-verbot", 
+        "gesellschaft/zeitgeschehen/2017-03/wuppertal-gymnasium-gebet-muslime-verbot", 
+        "wirtschaft/2017-02/agenda-2010-spd-martin-schulz-arbeit-niedriglohnsektor-effekte-deutschland", 
+        "politik/ausland/2017-03/mevluet-cavusoglu-hamburg-rede-deutschland-tuerkei", 
+        "gesellschaft/2017-03/syrien-kinder-psychische-stoerungen-buergerkrieg-save-the-children", 
+        "kultur/index", 
+        "kultur/2017-03/rechtspopulismus-alphabet-rechte-kampfbegriffe", 
+        "freitext", 
+        "serie/frisch-renoviert", 
+        "kultur/index", 
+        "freitext/2017/03/07/belarus-osteuropa-feigheit-protest-martinowitsch", 
+        "freitext/2017/03/07/belarus-osteuropa-feigheit-protest-martinowitsch", 
+        "kultur/literatur/2017-03/willkommen-gelobten-land-joerg-armbruster-deutschsprachige-juden-israel", 
+        "kultur/literatur/2017-03/willkommen-gelobten-land-joerg-armbruster-deutschsprachige-juden-israel", 
+        "kultur/literatur/2017-03/willkommen-gelobten-land-joerg-armbruster-deutschsprachige-juden-israel", 
+        "2017/09/kunstmarkt-christies-dirk-boll-deutschland-kunstexport", 
+        "2017/09/kunstmarkt-christies-dirk-boll-deutschland-kunstexport", 
+        "2017/09/kunstmarkt-christies-dirk-boll-deutschland-kunstexport", 
+        "zeit-magazin/index", 
+        "serie/beziehungen", 
+        "serie/gesellschaftskritik", 
+        "serie/magnum", 
+        "zeit-magazin/index", 
+        "zeit-magazin/essen-trinken/2017-03/pizzaschnecken-blattspinat-paprika-rezept", 
+        "zeit-magazin/essen-trinken/2017-03/pizzaschnecken-blattspinat-paprika-rezept", 
+        "zeit-magazin/essen-trinken/2017-03/pizzaschnecken-blattspinat-paprika-rezept", 
+        "zeit-magazin/2017/08/michael-wollny-pianist-jazz-liebe-musik-nachtfahrten", 
+        "zeit-magazin/2017/08/michael-wollny-pianist-jazz-liebe-musik-nachtfahrten", 
+        "zeit-magazin/2017/08/aelterwerden-kolumnist-harald-martenstein", 
+        "zeit-magazin/2017/08/aelterwerden-kolumnist-harald-martenstein", 
+        "zeit-magazin/2017/08/aelterwerden-kolumnist-harald-martenstein", 
+        "campus/index", 
+        "serie/jung-und-links", 
+        "thema/liebe-und-sex", 
+        "thema/bachelor", 
+        "campus/index", 
+        "campus/2017/s1/einstellungstests-assessment-center-vorstellungsgespraech", 
+        "campus/2017/s1/einstellungstests-assessment-center-vorstellungsgespraech", 
+        "campus/2017/s1/einstellungstests-assessment-center-vorstellungsgespraech", 
+        "campus/2017/02/freiraeume-universitaet-besetzen-studenten", 
+        "campus/2017/02/freiraeume-universitaet-besetzen-studenten", 
+        "campus/2017/02/freiraeume-universitaet-besetzen-studenten", 
+        "wissen/index", 
+        "wissen/gesundheit/2017-02/us-pharmaindustrie-donald-trump-obamacare-medikamente-gesundheitswesen", 
+        "thema/weltraum", 
+        "thema/artenschutz", 
+        "wissen/index", 
+        "wissen/2017-03/sentinel-2b-esa-satellit-mission-copernicus-erdbeobachtung", 
+        "wissen/2017-03/sentinel-2b-esa-satellit-mission-copernicus-erdbeobachtung", 
+        "wissen/2017-03/sentinel-2b-esa-satellit-mission-copernicus-erdbeobachtung", 
+        "2017/10/diabetes-pubertaet-insulin-blutzucker-krankheit-jugend-alltag", 
+        "2017/10/diabetes-pubertaet-insulin-blutzucker-krankheit-jugend-alltag", 
+        "2017/10/diabetes-pubertaet-insulin-blutzucker-krankheit-jugend-alltag", 
+        "foto/index", 
+        "entdecken/2017-03/banksy-the-walled-off-hotel-westjordanland-fs", 
+        "entdecken/2017-03/banksy-the-walled-off-hotel-westjordanland-fs", 
+        "gesellschaft/2017-03/kaschmir-srinagar-jammu-bevoelkerung-post-tramatischer-stress-fs", 
+        "gesellschaft/2017-03/kaschmir-srinagar-jammu-bevoelkerung-post-tramatischer-stress-fs", 
+        "foto/index", 
+        "digital/index", 
+        "thema/apple", 
+        "thema/facebook", 
+        "thema/nsa-affaere", 
+        "digital/index", 
+        "digital/internet/2017-03/us-wahl-cambridge-analytica-donald-trump-widerspruch", 
+        "digital/internet/2017-03/us-wahl-cambridge-analytica-donald-trump-widerspruch", 
+        "digital/internet/2017-03/us-wahl-cambridge-analytica-donald-trump-widerspruch", 
+        "digital/internet/2017-03/kindesmissbrauch-bbc-recherche-facebook-polizei-meldung", 
+        "digital/internet/2017-03/kindesmissbrauch-bbc-recherche-facebook-polizei-meldung", 
+        "digital/internet/2017-03/kindesmissbrauch-bbc-recherche-facebook-polizei-meldung", 
+        "karriere/index", 
+        "thema/arbeitsrecht-fragen", 
+        "serie/beruf-der-woche", 
+        "serie/chefsache", 
+        "karriere/index", 
+        "karriere/beruf/2017-02/thomas-weimann-internationale-haftbefehle-manager-interview", 
+        "karriere/beruf/2017-02/thomas-weimann-internationale-haftbefehle-manager-interview", 
+        "karriere/beruf/2017-02/thomas-weimann-internationale-haftbefehle-manager-interview", 
+        "karriere/beruf/2017-02/netzwerken-karriere-vorteil-frauen", 
+        "karriere/beruf/2017-02/netzwerken-karriere-vorteil-frauen", 
+        "karriere/beruf/2017-02/netzwerken-karriere-vorteil-frauen", 
+        "entdecken/index", 
+        "serie/Flopulaer", 
+        "serie/unterschaetzte-stadt", 
+        "entdecken/index", 
+        "2017/07/segeltrip-san-blas-inseln-karibik", 
+        "2017/07/segeltrip-san-blas-inseln-karibik", 
+        "2017/07/segeltrip-san-blas-inseln-karibik", 
+        "sport/index", 
+        "thema/bundesliga", 
+        "thema/champions-league", 
+        "thema/doping", 
+        "sport/index", 
+        "sport/2017-03/fc-arsenal-champions-league-fc-bayern-england-fans-stimmung", 
+        "sport/2017-03/fc-arsenal-champions-league-fc-bayern-england-fans-stimmung", 
+        "sport/2017-03/fc-arsenal-champions-league-fc-bayern-england-fans-stimmung", 
+        "sport/2017-03/walter-roehrl-rallye-weltmeister-deutschland-geburtstag", 
+        "sport/2017-03/walter-roehrl-rallye-weltmeister-deutschland-geburtstag", 
+        "sport/2017-03/walter-roehrl-rallye-weltmeister-deutschland-geburtstag", 
+        "mobilitaet/index", 
+        "thema/nahverkehr", 
+        "thema/vw-affaere", 
+        "serie/gesetz-der-strasse", 
+        "mobilitaet/index", 
+        "zeit-wissen/2017/02/chris-bangle-autodesigner-bmw-ferrari", 
+        "zeit-wissen/2017/02/chris-bangle-autodesigner-bmw-ferrari", 
+        "zeit-wissen/2017/02/chris-bangle-autodesigner-bmw-ferrari", 
+        "mobilitaet/2017-03/hauptstadtflughafen-ber-chef-muehlenfeld-raeumt-posten", 
+        "mobilitaet/2017-03/hauptstadtflughafen-ber-chef-muehlenfeld-raeumt-posten", 
+        "mobilitaet/2017-03/hauptstadtflughafen-ber-chef-muehlenfeld-raeumt-posten", 
+        "teilchen-blog/index", 
+        "hamburg/index", 
+        "thema/elbvertiefung-newsletter", 
+        "hamburg/index", 
+        "politik/ausland/2017-03/mevluet-cavusoglu-hamburg-wahlkampfauftritt-tuerkei-aussenminister", 
+        "politik/ausland/2017-03/mevluet-cavusoglu-hamburg-wahlkampfauftritt-tuerkei-aussenminister", 
+        "politik/ausland/2017-03/mevluet-cavusoglu-hamburg-wahlkampfauftritt-tuerkei-aussenminister", 
+        "hamburg/stadtleben/2017-03/elbvertiefung-07-03-17", 
+        "hamburg/stadtleben/2017-03/elbvertiefung-07-03-17", 
+        "hamburg/stadtleben/2017-03/elbvertiefung-07-03-17", 
+        "spiele/index", 
+        "news/index", 
+        "news/2017-03/08/eu-erneute-schlappe-fuer-may-oberhaus-fordert-vetorecht-zu-brexit-deal-08000603", 
+        "news/2017-03/08/wahlen-cavusoglu-kritisiert-deutschland-vor-treffen-mit-gabriel-scharf-08000403", 
+        "news/2017-03/07/geschichte-kalenderblatt-2017-8-maerz-07235802", 
+        "news/2017-03/07/deutschland-juncker-nennt-erdogans-nazi-vergleich-eine-frechheit-07235203", 
+        "news/2017-03/07/frankreich-berater-von-macron-tritt-wegen-pharma-taetigkeit-zurueck-07234003", 
+        "news/2017-03/07/tennis-tennis-thron-ist-fuer-kerber-erneut-in-reichweite-07135204", 
+        "news/2017-03/07/fussball-real-madrid-nach-31-gegen-neapel-im-viertelfinale-07224804", 
+        "news/2017-03/07/tennis-serena-williams-sagt-indian-wells-ab--kerber-wieder-nummer-eins-07231402", 
+        "studium/rankings/index", 
+        "spiele/index", 
+        "angebote/partnersuche/index", 
+        "angebote/senioren-ratgeber", 
+        "kultur/2012-03/fs-momente", 
+        "kultur/2012-03/fs-momente", 
+        "administratives/printbanderole/inhaltstemplate", 
+        "index", 
+        "impressum/index", 
+        "hilfe/datenschutz", 
+        "christ-und-welt", 
+        "angebote/schule/index", 
+        "blogs/index", 
+        "foto/index", 
+        "video", 
+        "leserartikel/index", 
+        "archiv", 
+        "schlagworte/index/A/index", 
+        "administratives/agb-kommentare-artikel", 
+        "hilfe/hilfe", 
+        "hilfe/hilfe", 
+        "index"
+    ]
+}

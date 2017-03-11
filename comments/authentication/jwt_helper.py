@@ -107,6 +107,8 @@ def get_permissions(user):
 
 def get_payload(user):
     payload = {
+        'email': user.email,
+        'display_name': user.display_name,
         'username': user.username,
         'permissions': get_permissions(user),
         'exp': datetime.utcnow() + settings.JWT_EXPIRATION_DELTA

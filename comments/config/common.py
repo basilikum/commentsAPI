@@ -45,6 +45,7 @@ THIRD_PARTY_APPS = (
 # Apps specific for this project go here.
 LOCAL_APPS = (
     'authentication',
+    'boards',
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -177,6 +178,7 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
     #'allauth.account.auth_backends.AuthenticationBackend',
 )
+AUTH_USER_MODEL = 'authentication.CMUser'
 
 # LOGGING CONFIGURATION
 LOGGING = {
@@ -253,7 +255,7 @@ JWT_AUTH_HEADER_PREFIX = 'Bearer'
 
 # CORS
 CORS_ORIGIN_WHITELIST = (
-    'localhost:4200'
+    'localhost:8080'
 )
 CORS_ALLOW_CREDENTIALS = True
 
@@ -262,3 +264,20 @@ CORS_ALLOW_CREDENTIALS = True
 PERM_CATEGORIES = [
     'auth',
 ]
+
+
+# OAUTH
+REDIRECT_URI = 'http://localhost:8000'
+ALLOWED_REDIRECT_URI = [
+    'http://localhost:8080'
+]
+
+# TWITTER
+TWITTER_CONSUMER_KEY = 'CCGlkmenNDribA35LR42ShcJu'
+TWITTER_CONSUMER_SECRET = 'p6fNS5u6esGG99GCU45pPA4HS2rgMB8qU3kvGRaXKLz8pMPOhc'
+
+# GOOGLE
+GOOGLE_SECRET = '4wy28emUr9bCMOqHC8lytNzV'
+
+# FACEBOOK
+FACEBOOK_SECRET = 'bc38990a0e6a45326521c862609c508d'

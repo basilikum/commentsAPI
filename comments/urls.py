@@ -16,6 +16,7 @@ urlpatterns = [
     url(r'^', include(router.urls)),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^auth/', include('authentication.urls')),
+    url(r'^boards/', include('boards.urls')),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

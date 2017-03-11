@@ -1,44 +1,61 @@
-site
- - url: https://www.youtube.com
-
-site
- - url: http://www.zeit.de
-
-query_rule
- - site
- - suburl: /watch
- - query_params: [v]
 
 
-commentablesource
- - site
- - suburl: /watch?v=Lmq6yQd6WTs
+
+Tasks:
+
+Url Classification:
+
+1) Reduce Query Paramenter
+2) Reduce Url Segments
+3) Group Urls
 
 
-commentablesource
- - site
- - suburl: /mobilitaet/2017-02/autorennen-mord-urteil-berlin-raser
+Url Transformation Rules:
+-------------------------
+
+1) manipulate path
+/path/to/article/page_2 => /path/to/article
+--> replace("/page_[0-9]+$", "")
+/path/to/article-p2.html => /path/to/article.html
+--> replace("-p[0-9]+.html$", ".html")
+AMAZON
+".*/([A-Z0-9]{10})(/.*|$)", "/gp/product/\\1"
+
+2) remove all but required query params
+/path/to/video?v=3435&xc=dg25 => /path/to/video?v=3435
+{
+    "query_params": {
+        "/watch": ["v"]
+    }
+}
+
+First Version:
+--------------
+
+- comment on individual pages only (no detection of groups)
+- special rules for some big sites (youtube, etc.)
+- user accounts (local + google,facebook,twitter)
+- comment, reply, vote up or down
+- function to manually merge boards and update site rules
+- catchy name
+- basic design + logo
+- admin interface to manually add and modify rules
+- maybe restrictions on personal social media pages
 
 
-board
- - commentablesource
- - created
- - user
+Update:
+-------
+
+- Chrome Browser Extensions
+- Automatically group and query-rules detection
+    - web crawling / follow links / ...
+- Design Update
+- Firefox Extension
+- Content Analyzing
+    - Suggest board of pages with similar topic
+- Android App
+- IPhone App
+- Extension for other browsers
 
 
-topic
- - board
- - created
- - owner
- - title
-
-
-post
- - topic
- - created
- - owner
- - text
- - parent
- - likes
- - dislikes
 
