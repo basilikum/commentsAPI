@@ -5,6 +5,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 
 from common.fields import EmailNullField
+from common.models import random_id
 
 
 class CMUserManager(BaseUserManager):
@@ -31,10 +32,8 @@ class CMUser(AbstractBaseUser, PermissionsMixin):
     display_name = models.CharField(max_length=120, blank=True)
     email = EmailNullField(
         verbose_name='email address',
-        max_length=255,
-        unique=True,
-        blank=True,
-        null=True
+        max_length=255, unique=True,
+        blank=True, null=True
     )
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)

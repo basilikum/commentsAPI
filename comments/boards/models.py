@@ -2,32 +2,24 @@
 # -*- coding: utf-8 -*-
 
 import re
-import string
-from random import choice
 
 from django.conf import settings
 from django.db import models
 
+from common.models import random_id
 
-def generate_id(model, size):
-    chars = string.ascii_letters + string.digits + '_-'
-    while True:
-        mid = ''.join(choice(chars) for _ in range(size))
-        if not model.objects.filter(id=mid).exists():
-            break
-    return mid
 
 def generate_site_id():
-    return generate_id(Site, 7)
+    return random_id(Site, 7)
 
 def generate_board_id():
-    return generate_id(Board, 8)
+    return random_id(Board, 8)
 
 def generate_thread_id():
-    return generate_id(Thread, 11)
+    return random_id(Thread, 11)
 
 def generate_post_id():
-    return generate_id(Post, 11)
+    return random_id(Post, 11)
 
 
 class Site(models.Model):

@@ -11,6 +11,8 @@ from rest_framework.serializers import (
     ValidationError,
 )
 
+from authentication.serializers import UserSerializer
+
 from .models import Board, Post, Site, Thread
 from .url_processor import normalize_url
 
@@ -80,10 +82,11 @@ class BoardCreateSerializer(Serializer):
 
 class ThreadSerializer(ModelSerializer):
     board = PrimaryKeyRelatedField(read_only=True)
+    creator = UserSerializer(read_only=True)
 
     class Meta:
         model = Thread
-        fields = ('id', 'title', 'board')
+        fields = ('id', 'title', 'board', 'creator', 'created')
 
 
 class ThreadCreateSerializer(Serializer):
@@ -91,16 +94,22 @@ class ThreadCreateSerializer(Serializer):
     board = PrimaryKeyRelatedField(queryset=Board.objects.all())
     text = CharField(max_length=65536)
     site = PrimaryKeyRelatedField(queryset=Site.objects.all())
+    user = PrimaryKeyRelatedField(
+        default=CurrentUserDefault(),
+        read_only=True
+    )
 
     def create(self, validated_data):
         thread = Thread.objects.create(
             board=validated_data['board'],
-            title=validated_data['title']
+            title=validated_data['title'],
+            creator=validated_data['user']
         )
         Post.objects.create(
             thread=thread,
             text=validated_data['text'],
-            origin=validated_data['site']
+            origin=validated_data['site'],
+            creator=validated_data['user']
         )
         return thread
 
