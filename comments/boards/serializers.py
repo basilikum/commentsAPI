@@ -8,7 +8,6 @@ from rest_framework.serializers import (
     PrimaryKeyRelatedField,
     Serializer,
     URLField,
-    ValidationError,
 )
 
 from authentication.serializers import UserSerializer
@@ -40,44 +39,30 @@ class BoardDetailSerializer(ModelSerializer):
         read_only_fields = ('id', 'site', 'path')
 
 
-class BoardCreateSerializer(Serializer):
+class BoardByUrlSerializer(Serializer):
     url = URLField()
-    user = PrimaryKeyRelatedField(
-        default=CurrentUserDefault(),
-        read_only=True
-    )
 
-    def validate(self, data):
+    def to_representation(self, data):
         netloc, path = normalize_url(data['url'])
-        board_exists = Board.objects.filter(
-            site__netloc=netloc,
-            path=path
-        ).exists()
-        if board_exists:
-            raise ValidationError('board already exists')
-        data['netloc'] = netloc
-        data['path'] = path
-        return data
-
-    def create(self, validated_data):
-        user = validated_data['user']
-        netloc = validated_data['netloc']
-        path = validated_data['path']
         try:
-            site = Site.objects.get(netloc=netloc)
-        except Site.DoesNotExist:
-            site = Site.objects.create(netloc=netloc, creator=user)
-            site.save()
-        board = Board.objects.create(
-            site=site,
-            path=path,
-            title='{}{}'.format(netloc, path),
-            creator=user
-        )
-        return board
-
-    def to_representation(self, obj):
-        return BoardSerializer(obj).data
+            board = Board.objects.select_related('site') \
+                .get(site__netloc=netloc, path=path)
+            return BoardSerializer(board).data
+        except Board.DoesNotExist:
+            try:
+                site = Site.objects.get(netloc=netloc)
+                site = SiteSerializer(site).data
+            except Site.DoesNotExist:
+                site = {
+                    'id': 'fake',
+                    'netloc': netloc
+                }
+            return {
+                'id': 'fake',
+                'path': path,
+                'title': '{}{}'.format(netloc, path),
+                'site': site
+            }
 
 
 class ThreadSerializer(ModelSerializer):
@@ -91,7 +76,7 @@ class ThreadSerializer(ModelSerializer):
 
 class ThreadCreateSerializer(Serializer):
     title = CharField(max_length=100)
-    board = PrimaryKeyRelatedField(queryset=Board.objects.all())
+    url = URLField()
     text = CharField(max_length=65536)
     site = PrimaryKeyRelatedField(queryset=Site.objects.all())
     user = PrimaryKeyRelatedField(
@@ -100,16 +85,33 @@ class ThreadCreateSerializer(Serializer):
     )
 
     def create(self, validated_data):
+        netloc, path = normalize_url(validated_data['url'])
+        user = validated_data['user']
+        try:
+            board = Board.objects.select_related('site') \
+                .get(site__netloc=netloc, path=path)
+        except Board.DoesNotExist:
+            try:
+                site = Site.objects.get(netloc=netloc)
+            except Site.DoesNotExist:
+                site = Site.objects.create(netloc=netloc, creator=user)
+            board = Board.objects.create(
+                site=site,
+                path=path,
+                title='{}{}'.format(netloc, path),
+                creator=user
+            )
         thread = Thread.objects.create(
-            board=validated_data['board'],
+            board=board,
             title=validated_data['title'],
-            creator=validated_data['user']
+            raw_path=validated_data['url'],
+            creator=user
         )
         Post.objects.create(
             thread=thread,
             text=validated_data['text'],
-            origin=validated_data['site'],
-            creator=validated_data['user']
+            origin=board.site,
+            creator=user
         )
         return thread
 

@@ -5,6 +5,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 
 from rest_framework.filters import OrderingFilter, SearchFilter
 from rest_framework.generics import (
+    ListAPIView,
     ListCreateAPIView,
     RetrieveAPIView,
     RetrieveUpdateAPIView
@@ -14,14 +15,13 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from .filter import (
     BoardsFilterBackend,
     PostFilter,
-    UrlFilterBackend
 )
 from .models import Board, Post, Thread
 from .pagination import StandardPagination
 from .serializers import (
     BoardSerializer,
     BoardDetailSerializer,
-    BoardCreateSerializer,
+    BoardByUrlSerializer,
     PostSerializer,
     PostDetailSerializer,
     ThreadSerializer,
@@ -30,25 +30,31 @@ from .serializers import (
 )
 
 
-class BoardListCreate(ListCreateAPIView):
+class BoardList(ListAPIView):
     queryset = Board.objects.all()
+    serializer_class = BoardSerializer
     permission_classes = (IsAuthenticatedOrReadOnly,)
-    filter_backends = (UrlFilterBackend, SearchFilter, OrderingFilter)
+    filter_backends = (SearchFilter, OrderingFilter)
     search_fields = ('site__netloc', 'path', 'title')
     ordering_fields = ('title', 'created')
     ordering = ('created',)
     pagination_class = StandardPagination
-
-    def get_serializer_class(self):
-        if self.request.method == 'POST':
-            return BoardCreateSerializer
-        return BoardSerializer
 
 
 class BoardDetail(RetrieveUpdateAPIView):
     queryset = Board.objects.all()
     permission_classes = (IsAuthenticatedOrReadOnly,)
     serializer_class = BoardDetailSerializer
+
+
+class BoardByUrl(RetrieveAPIView):
+    permission_classes = (IsAuthenticatedOrReadOnly,)
+    serializer_class = BoardByUrlSerializer
+
+    def get_object(self):
+        return {
+            'url': self.request.query_params.get('url', '')
+        }
 
 
 class ThreadListCreate(ListCreateAPIView):
