@@ -7,6 +7,7 @@ from rest_framework.serializers import (
     ModelSerializer,
     PrimaryKeyRelatedField,
     Serializer,
+    SerializerMethodField,
     URLField,
 )
 
@@ -78,7 +79,6 @@ class ThreadCreateSerializer(Serializer):
     title = CharField(max_length=100)
     url = URLField()
     text = CharField(max_length=65536)
-    site = PrimaryKeyRelatedField(queryset=Site.objects.all())
     user = PrimaryKeyRelatedField(
         default=CurrentUserDefault(),
         read_only=True
@@ -110,7 +110,7 @@ class ThreadCreateSerializer(Serializer):
         Post.objects.create(
             thread=thread,
             text=validated_data['text'],
-            origin=board.site,
+            site=board.site,
             creator=user
         )
         return thread
@@ -121,39 +121,62 @@ class ThreadCreateSerializer(Serializer):
 
 class ThreadDetailSerializer(ModelSerializer):
     board = PrimaryKeyRelatedField(read_only=True)
+    creator = UserSerializer(read_only=True)
+    post = SerializerMethodField()
 
     class Meta:
         model = Thread
-        fields = ('id', 'board', 'title')
-        read_only_fields = ('id', 'board')
+        fields = ('id', 'title', 'board', 'creator', 'created', 'post')
+        read_only_fields = ('created',)
+
+    def get_post(self, obj):
+        post = obj.posts.filter(origin=None)[0]
+        return PostSerializer(post).data
 
 
 class PostSerializer(ModelSerializer):
-    parent = PrimaryKeyRelatedField(queryset=Post.objects.all())
+    parent = PrimaryKeyRelatedField(read_only=True)
+    origin = PrimaryKeyRelatedField(queryset=Post.objects.all())
     thread = PrimaryKeyRelatedField(read_only=True)
-    origin = PrimaryKeyRelatedField(queryset=Site.objects.all())
+    site = PrimaryKeyRelatedField(queryset=Site.objects.all())
 
     class Meta:
         model = Post
-        fields = ('id', 'text', 'thread', 'parent', 'origin')
+        fields = (
+            'id', 'text', 'thread', 'parent', 'origin',
+            'site', 'creator', 'created'
+        )
         read_only_fields = ('id', 'thread')
+
+    def get_parent(self, origin):
+        if not origin.parent or origin.parent == origin.origin:
+            return origin
+        return origin.parent
 
     def create(self, validated_data):
         post = Post.objects.create(
-            thread=validated_data['parent'].thread,
+            thread=validated_data['origin'].thread,
             text=validated_data['text'],
-            parent=validated_data['parent'],
-            origin=validated_data['origin']
+            origin=validated_data['origin'],
+            parent=self.get_parent(validated_data['origin']),
+            site=validated_data['site']
         )
         return post
 
 
 class PostDetailSerializer(ModelSerializer):
     parent = PrimaryKeyRelatedField(read_only=True)
-    thread = PrimaryKeyRelatedField(read_only=True)
     origin = PrimaryKeyRelatedField(read_only=True)
+    thread = PrimaryKeyRelatedField(read_only=True)
+    site = PrimaryKeyRelatedField(read_only=True)
 
     class Meta:
         model = Post
-        fields = ('id', 'text', 'thread', 'parent', 'origin')
-        read_only_fields = ('id', 'thread', 'parent', 'origin')
+        fields = (
+            'id', 'text', 'thread', 'parent', 'origin',
+            'site', 'creator', 'created'
+        )
+        read_only_fields = (
+            'id', 'thread', 'parent', 'origin',
+            'site', 'creator', 'created'
+        )

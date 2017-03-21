@@ -137,6 +137,10 @@ class Thread(models.Model):
 class Post(models.Model):
     id = models.CharField(max_length=11, primary_key=True, default=generate_post_id)
     thread = models.ForeignKey(Thread, models.CASCADE, related_name='posts')
+    origin = models.ForeignKey(
+        'Post', models.CASCADE,
+        null=True, blank=True, related_name='replies'
+    )
     parent = models.ForeignKey(
         'Post', models.CASCADE,
         null=True, blank=True, related_name='children'
@@ -149,7 +153,7 @@ class Post(models.Model):
     )
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
-    origin = models.ForeignKey(Site, models.CASCADE, related_name='posts')
+    site = models.ForeignKey(Site, models.CASCADE, related_name='posts')
 
     def __unicode__(self):
         return '{}'.format(self.thread.title)

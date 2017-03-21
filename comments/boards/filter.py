@@ -21,4 +21,4 @@ class PostFilter(FilterSet):
 
     class Meta:
         model = Post
-        fields = ['thread']
+        fields = ['thread', 'parent']
