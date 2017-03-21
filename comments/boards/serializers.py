@@ -139,6 +139,7 @@ class PostSerializer(ModelSerializer):
     origin = PrimaryKeyRelatedField(queryset=Post.objects.all())
     thread = PrimaryKeyRelatedField(read_only=True)
     site = PrimaryKeyRelatedField(queryset=Site.objects.all())
+    creator = UserSerializer(read_only=True)
 
     class Meta:
         model = Post
@@ -169,6 +170,7 @@ class PostDetailSerializer(ModelSerializer):
     origin = PrimaryKeyRelatedField(read_only=True)
     thread = PrimaryKeyRelatedField(read_only=True)
     site = PrimaryKeyRelatedField(read_only=True)
+    creator = UserSerializer(read_only=True)
 
     class Meta:
         model = Post
