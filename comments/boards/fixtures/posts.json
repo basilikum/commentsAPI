@@ -1,0 +1,114 @@
+[
+    {
+        "model": "boards.post",
+        "pk": "aaaaaaaaaaa",
+        "fields": {
+            "thread": "aaaaaaaaaaa",
+            "origin": null,
+            "parent": null,
+            "creator": 3,
+            "created": "2017-01-01T12:00:00",
+            "modified": "2017-01-01T12:00:00",
+            "site": "aaaaaaa",
+            "text": "I have a basic CRUD app that loads blog posts from my local mong database, and they are rendered to an html page. CRUD operations worked untilIstarted loading api data from mlab. Although GET function works, I don'tknow how to go about getting DELETE, PUT, and POST to work. I know itshould be simple, I just need a pointer in the right direction. My previous work using my local database is commented out in server.js and models.js, since I still want to retain that code. Sorry, forgot to add the link to my github: https://github.com/maria-S-456/final-node-blog"
+        }
+    },
+    {
+        "model": "boards.post",
+        "pk": "bbbbbbbbbbb",
+        "fields": {
+            "thread": "aaaaaaaaaaa",
+            "origin": "aaaaaaaaaaa",
+            "parent": "aaaaaaaaaaa",
+            "creator": 3,
+            "created": "2017-01-01T12:00:00",
+            "modified": "2017-01-01T12:00:00",
+            "site": "aaaaaaa",
+            "text": "On your server.js you forgot to change <username>:<password> to the mongodb user's UN/PW on line 5. Also, I don't think you need a port variable as that's included in the mongodb connection string. Edit: Just be careful about what you use for your password as github is completely open to anyone to see if this is going to be live code it wouldn't be hard to inject whatever they want into your DB. If this is live consider using DotEnv"
+        }
+    },
+    {
+        "model": "boards.post",
+        "pk": "ccccccccccc",
+        "fields": {
+            "thread": "aaaaaaaaaaa",
+            "origin": "aaaaaaaaaaa",
+            "parent": "aaaaaaaaaaa",
+            "creator": 3,
+            "created": "2017-01-01T12:00:00",
+            "modified": "2017-01-01T12:00:00",
+            "site": "aaaaaaa",
+            "text": "Is this your first programming language? Fundamentals means very different things if we're talking about fundamentals of programming vs fundamentals of js in particular."
+        }
+    },
+    {
+        "model": "boards.post",
+        "pk": "ddddddddddd",
+        "fields": {
+            "thread": "aaaaaaaaaaa",
+            "origin": "bbbbbbbbbbb",
+            "parent": "bbbbbbbbbbb",
+            "creator": 3,
+            "created": "2017-01-01T12:00:00",
+            "modified": "2017-01-01T12:00:00",
+            "site": "aaaaaaa",
+            "text": "It's a little odd how you're creating the object you are sending, but it should work just fine that way. I suspect there's something else involved in the send or receiving of the message in code you don't show here that is causing your issue. FYI, if you're trying to create an array of objects, then you should declare "
+        }
+    },
+    {
+        "model": "boards.post",
+        "pk": "eeeeeeeeeee",
+        "fields": {
+            "thread": "aaaaaaaaaaa",
+            "origin": "bbbbbbbbbbb",
+            "parent": "bbbbbbbbbbb",
+            "creator": 3,
+            "created": "2017-01-01T14:00:00",
+            "modified": "2017-01-01T14:00:00",
+            "site": "aaaaaaa",
+            "text": "It's a little odd how you're creating the object you are sending, but it should work just fine that way. I suspect there's something else involved in the send or receiving of the message in code you don't show here that is causing your issue. FYI, if you're trying to create an array of objects, then you should declare "
+        }
+    },
+    {
+        "model": "boards.post",
+        "pk": "fffffffffff",
+        "fields": {
+            "thread": "aaaaaaaaaaa",
+            "origin": "bbbbbbbbbbb",
+            "parent": "bbbbbbbbbbb",
+            "creator": 3,
+            "created": "2017-01-01T13:00:00",
+            "modified": "2017-01-01T13:00:00",
+            "site": "aaaaaaa",
+            "text": "It's a little odd how you're creating the object you are sending, but it should work just fine that way. I suspect there's something else involved in the send or receiving of the message in code you don't show here that is causing your issue. FYI, if you're trying to create an array of objects, then you should declare "
+        }
+    },
+    {
+        "model": "boards.post",
+        "pk": "ggggggggggg",
+        "fields": {
+            "thread": "aaaaaaaaaaa",
+            "origin": "eeeeeeeeeee",
+            "parent": "bbbbbbbbbbb",
+            "creator": 3,
+            "created": "2017-01-01T16:00:00",
+            "modified": "2017-01-01T16:00:00",
+            "site": "aaaaaaa",
+            "text": "It's a little odd how you're creating the object you are sending, but it should work just fine that way. I suspect there's something else involved in the send or receiving of the message in code you don't show here that is causing your issue. FYI, if you're trying to create an array of objects, then you should declare "
+        }
+    },
+    {
+        "model": "boards.post",
+        "pk": "hhhhhhhhhhh",
+        "fields": {
+            "thread": "aaaaaaaaaaa",
+            "origin": "aaaaaaaaaaa",
+            "parent": "aaaaaaaaaaa",
+            "creator": 3,
+            "created": "2017-01-01T13:00:00",
+            "modified": "2017-01-01T13:00:00",
+            "site": "aaaaaaa",
+            "text": "Is this your first programming language? Fundamentals means very different things if we're talking about fundamentals of programming vs fundamentals of js in particular."
+        }
+    }
+]

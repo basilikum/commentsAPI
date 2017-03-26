@@ -157,3 +157,22 @@ class Post(models.Model):
 
     def __unicode__(self):
         return '{}'.format(self.thread.title)
+
+
+class Vote(models.Model):
+    post = models.ForeignKey(Post, models.CASCADE, related_name='votes')
+    creator = models.ForeignKey(
+        settings.AUTH_USER_MODEL, models.SET_NULL,
+        null=True, blank=True, related_name='posts'
+    )
+    positive = models.BooleanField()
+    created = models.DateTimeField(auto_now_add=True)
+    modified = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        unique_together = ('post', 'creator')
+        index_together = ['post', 'creator']
+
+    def __unicode__(self):
+        v = '+1' if self.positive else '-1'
+        return '{} by {} on {}'.format(v, self.creator.display_name, self.post_id)

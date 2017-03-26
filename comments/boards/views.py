@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+from django.db.models import Count
+
 from django_filters.rest_framework import DjangoFilterBackend
 
 from rest_framework.filters import OrderingFilter, SearchFilter
@@ -11,19 +13,23 @@ from rest_framework.generics import (
     RetrieveUpdateAPIView
 )
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
 from .filter import (
     BoardsFilterBackend,
     PostFilter,
 )
-from .models import Board, Post, Thread
+from .models import Board, Post, Thread, Vote
 from .pagination import StandardPagination
 from .serializers import (
     BoardSerializer,
     BoardDetailSerializer,
     BoardByUrlSerializer,
     PostSerializer,
+    PostCreateSerializer,
     PostDetailSerializer,
+    PostVotesSerializer,
     ThreadSerializer,
     ThreadCreateSerializer,
     ThreadDetailSerializer
@@ -79,18 +85,63 @@ class ThreadDetail(RetrieveUpdateAPIView):
 
 
 class PostListCreate(ListCreateAPIView):
-    queryset = Post.objects.all()
-    serializer_class = PostSerializer
+    queryset = Post.objects \
+        .prefetch_related('votes') \
+        .annotate(number_of_children=Count('children')) \
+        .order_by('created') \
+        .all()
     permission_classes = (IsAuthenticatedOrReadOnly,)
-    filter_backends = (DjangoFilterBackend, SearchFilter, OrderingFilter)
+    filter_backends = (DjangoFilterBackend, SearchFilter)
     filter_class = PostFilter
     search_fields = ('text',)
-    ordering_fields = ('created',)
-    ordering = ('created',)
     pagination_class = StandardPagination
+
+    def get_serializer_class(self):
+        if self.request.method == 'POST':
+            return PostCreateSerializer
+        return PostSerializer
+
+
+class PostChildren(ListAPIView):
+    serializer_class = PostSerializer
+    permission_classes = (IsAuthenticatedOrReadOnly,)
+    filter_backends = (SearchFilter,)
+    search_fields = ('text',)
+
+    def get_queryset(self):
+        pk = self.kwargs['pk']
+        return Post.objects \
+            .annotate(Count('votes')) \
+            .order_by('created') \
+            .filter(parent_id=pk) \
+            .exclude(parent__parent=None)
+
+
+class PostVotes(APIView):
+    permission_classes = (IsAuthenticatedOrReadOnly,)
+    def patch(self, request, **kwargs):
+        try:
+            post = Post.objects.get(pk=kwargs['pk'])
+        except Post.DoesNotExist:
+            raise
+        value = request.data['value']
+        if value == 0:
+            Vote.objects.filter(post=post, creator=request.user).delete()
+            return Response({'value': 0})
+        data = {
+            post: post,
+            value: value
+        }
+        try:
+            vote = Vote.objects.get(post=post, creator=request.user)
+            serializer = PostVotesSerializer(vote, data)
+        except Vote.DoesNotExist:
+            serializer = PostVotesSerializer(data)
+        serializer.is_valid(raise_exception=True)
+        return Response(serializer.data)
 
 
 class PostDetail(RetrieveUpdateAPIView):
-    queryset = Post.objects.all()
+    queryset = Post.objects.prefetch_related('votes').all()
     permission_classes = (IsAuthenticatedOrReadOnly,)
     serializer_class = PostDetailSerializer

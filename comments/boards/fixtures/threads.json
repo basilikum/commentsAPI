@@ -1,0 +1,14 @@
+[
+    {
+        "model": "boards.thread",
+        "pk": "aaaaaaaaaaa",
+        "fields": {
+            "board": "aaaaaaaa",
+            "raw_path": "https://www.google.de/search",
+            "title": "Wieso sind in der Nacht eigentlich alle Katzen grau?",
+            "creator": 3,
+            "created": "2017-01-01T12:00:00",
+            "modified": "2017-01-01T12:00:00"
+        }
+    }
+]

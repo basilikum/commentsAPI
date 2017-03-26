@@ -1,29 +1,21 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from rest_framework.serializers import (
-    CharField,
-    CurrentUserDefault,
-    ModelSerializer,
-    PrimaryKeyRelatedField,
-    Serializer,
-    SerializerMethodField,
-    URLField,
-)
+from rest_framework import serializers
 
 from authentication.serializers import UserSerializer
 
-from .models import Board, Post, Site, Thread
+from .models import Board, Post, Site, Thread, Vote
 from .url_processor import normalize_url
 
 
-class SiteSerializer(ModelSerializer):
+class SiteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Site
         fields = ('id', 'netloc',)
 
 
-class BoardSerializer(ModelSerializer):
+class BoardSerializer(serializers.ModelSerializer):
     site = SiteSerializer(read_only=True)
 
     class Meta:
@@ -31,7 +23,7 @@ class BoardSerializer(ModelSerializer):
         fields = ('id', 'site', 'path', 'title')
 
 
-class BoardDetailSerializer(ModelSerializer):
+class BoardDetailSerializer(serializers.ModelSerializer):
     site = SiteSerializer(read_only=True)
 
     class Meta:
@@ -40,8 +32,8 @@ class BoardDetailSerializer(ModelSerializer):
         read_only_fields = ('id', 'site', 'path')
 
 
-class BoardByUrlSerializer(Serializer):
-    url = URLField()
+class BoardByUrlSerializer(serializers.Serializer):
+    url = serializers.URLField()
 
     def to_representation(self, data):
         netloc, path = normalize_url(data['url'])
@@ -66,8 +58,8 @@ class BoardByUrlSerializer(Serializer):
             }
 
 
-class ThreadSerializer(ModelSerializer):
-    board = PrimaryKeyRelatedField(read_only=True)
+class ThreadSerializer(serializers.ModelSerializer):
+    board = serializers.PrimaryKeyRelatedField(read_only=True)
     creator = UserSerializer(read_only=True)
 
     class Meta:
@@ -75,12 +67,12 @@ class ThreadSerializer(ModelSerializer):
         fields = ('id', 'title', 'board', 'creator', 'created')
 
 
-class ThreadCreateSerializer(Serializer):
-    title = CharField(max_length=100)
-    url = URLField()
-    text = CharField(max_length=65536)
-    user = PrimaryKeyRelatedField(
-        default=CurrentUserDefault(),
+class ThreadCreateSerializer(serializers.Serializer):
+    title = serializers.CharField(max_length=100)
+    url = serializers.URLField()
+    text = serializers.CharField(max_length=65536)
+    user = serializers.PrimaryKeyRelatedField(
+        default=serializers.CurrentUserDefault(),
         read_only=True
     )
 
@@ -119,10 +111,10 @@ class ThreadCreateSerializer(Serializer):
         return ThreadSerializer(obj).data
 
 
-class ThreadDetailSerializer(ModelSerializer):
-    board = PrimaryKeyRelatedField(read_only=True)
+class ThreadDetailSerializer(serializers.ModelSerializer):
+    board = serializers.PrimaryKeyRelatedField(read_only=True)
     creator = UserSerializer(read_only=True)
-    post = SerializerMethodField()
+    post = serializers.SerializerMethodField()
 
     class Meta:
         model = Thread
@@ -134,20 +126,44 @@ class ThreadDetailSerializer(ModelSerializer):
         return PostSerializer(post).data
 
 
-class PostSerializer(ModelSerializer):
-    parent = PrimaryKeyRelatedField(read_only=True)
-    origin = PrimaryKeyRelatedField(queryset=Post.objects.all())
-    thread = PrimaryKeyRelatedField(read_only=True)
-    site = PrimaryKeyRelatedField(queryset=Site.objects.all())
+class PostSerializer(serializers.ModelSerializer):
+    parent = serializers.PrimaryKeyRelatedField(read_only=True)
+    origin = serializers.PrimaryKeyRelatedField(read_only=True)
+    thread = serializers.PrimaryKeyRelatedField(read_only=True)
+    site = serializers.PrimaryKeyRelatedField(read_only=True)
     creator = UserSerializer(read_only=True)
+    number_of_children = serializers.IntegerField(read_only=True)
+    own_vote = serializers.SerializerMethodField()
 
     class Meta:
         model = Post
         fields = (
             'id', 'text', 'thread', 'parent', 'origin',
-            'site', 'creator', 'created'
+            'site', 'creator', 'created', 'number_of_children'
         )
-        read_only_fields = ('id', 'thread')
+
+    def get_own_vote(self, obj):
+        try:
+            vote = Vote.objects.get(post=obj, creator=self.context['request'].user)
+            return 1 if vote.positive else -1
+        except Vote.DoesNotExist:
+            return 0
+
+
+class PostCreateSerializer(serializers.ModelSerializer):
+    origin = serializers.PrimaryKeyRelatedField(queryset=Post.objects.all())
+    site = serializers.PrimaryKeyRelatedField(queryset=Site.objects.all())
+    creator = serializers.PrimaryKeyRelatedField(
+        default=serializers.CurrentUserDefault(),
+        read_only=True
+    )
+
+    class Meta:
+        model = Post
+        fields = (
+            'text', 'origin',
+            'site', 'creator',
+        )
 
     def get_parent(self, origin):
         if not origin.parent or origin.parent == origin.origin:
@@ -160,16 +176,20 @@ class PostSerializer(ModelSerializer):
             text=validated_data['text'],
             origin=validated_data['origin'],
             parent=self.get_parent(validated_data['origin']),
-            site=validated_data['site']
+            site=validated_data['site'],
+            creator=validated_data['creator']
         )
         return post
 
+    def to_representation(self, obj):
+        return PostSerializer(obj).data
 
-class PostDetailSerializer(ModelSerializer):
-    parent = PrimaryKeyRelatedField(read_only=True)
-    origin = PrimaryKeyRelatedField(read_only=True)
-    thread = PrimaryKeyRelatedField(read_only=True)
-    site = PrimaryKeyRelatedField(read_only=True)
+
+class PostDetailSerializer(serializers.ModelSerializer):
+    parent = serializers.PrimaryKeyRelatedField(read_only=True)
+    origin = serializers.PrimaryKeyRelatedField(read_only=True)
+    thread = serializers.PrimaryKeyRelatedField(read_only=True)
+    site = serializers.PrimaryKeyRelatedField(read_only=True)
     creator = UserSerializer(read_only=True)
 
     class Meta:
@@ -182,3 +202,34 @@ class PostDetailSerializer(ModelSerializer):
             'id', 'thread', 'parent', 'origin',
             'site', 'creator', 'created'
         )
+
+
+class PostVotesSerializer(serializers.Serializer):
+    value = serializers.IntegerField()
+    post = serializers.PrimaryKeyRelatedField(queryset=Post.objects.all())
+    user = serializers.PrimaryKeyRelatedField(
+        default=serializers.CurrentUserDefault(),
+        read_only=True
+    )
+
+    def validate(self, data):
+        if data['value'] not in [-1, 1]:
+            raise serializers.ValidationError('not allowed value!')
+        return data
+
+    def create(self, validated_data):
+        return Vote.objects.create(
+            post=validated_data['post'],
+            positive=validated_data['value'] > 0,
+            creator=validated_data['user']
+        )
+
+    def update(self, instance, validated_data):
+        instance.positive = validated_data['value'] > 0
+        instance.save()
+        return instance
+
+    def to_representation(self, obj):
+        return {
+            'value': 1 if obj.positive else -1
+        }
