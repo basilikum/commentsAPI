@@ -163,7 +163,7 @@ class Vote(models.Model):
     post = models.ForeignKey(Post, models.CASCADE, related_name='votes')
     creator = models.ForeignKey(
         settings.AUTH_USER_MODEL, models.SET_NULL,
-        null=True, blank=True, related_name='posts'
+        null=True, blank=True, related_name='votes'
     )
     positive = models.BooleanField()
     created = models.DateTimeField(auto_now_add=True)
@@ -175,4 +175,4 @@ class Vote(models.Model):
 
     def __unicode__(self):
         v = '+1' if self.positive else '-1'
-        return '{} by {} on {}'.format(v, self.creator.display_name, self.post_id)
+        return u'{} by {} on {}'.format(v, self.creator.display_name, self.post_id)

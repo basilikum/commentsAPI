@@ -5,6 +5,7 @@ from rest_framework import serializers
 
 from authentication.serializers import UserSerializer
 
+from .helper import posts_with_votes
 from .models import Board, Post, Site, Thread, Vote
 from .url_processor import normalize_url
 
@@ -111,19 +112,12 @@ class ThreadCreateSerializer(serializers.Serializer):
         return ThreadSerializer(obj).data
 
 
-class ThreadDetailSerializer(serializers.ModelSerializer):
-    board = serializers.PrimaryKeyRelatedField(read_only=True)
-    creator = UserSerializer(read_only=True)
-    post = serializers.SerializerMethodField()
-
+class VoteSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Thread
-        fields = ('id', 'title', 'board', 'creator', 'created', 'post')
-        read_only_fields = ('created',)
-
-    def get_post(self, obj):
-        post = obj.posts.filter(origin=None)[0]
-        return PostSerializer(post).data
+        model = Vote
+        fields = (
+            'positive',
+        )
 
 
 class PostSerializer(serializers.ModelSerializer):
@@ -133,13 +127,17 @@ class PostSerializer(serializers.ModelSerializer):
     site = serializers.PrimaryKeyRelatedField(read_only=True)
     creator = UserSerializer(read_only=True)
     number_of_children = serializers.IntegerField(read_only=True)
-    own_vote = serializers.SerializerMethodField()
+    #own_vote = serializers.SerializerMethodField()
+    plus1s = serializers.IntegerField()
+    minus1s = serializers.IntegerField()
+    votes = VoteSerializer(many=True, read_only=True)
 
     class Meta:
         model = Post
         fields = (
             'id', 'text', 'thread', 'parent', 'origin',
-            'site', 'creator', 'created', 'number_of_children'
+            'site', 'creator', 'created', 'number_of_children',
+            'plus1s', 'minus1s', 'votes'
         )
 
     def get_own_vote(self, obj):
@@ -148,6 +146,17 @@ class PostSerializer(serializers.ModelSerializer):
             return 1 if vote.positive else -1
         except Vote.DoesNotExist:
             return 0
+
+
+class ThreadDetailSerializer(serializers.ModelSerializer):
+    board = serializers.PrimaryKeyRelatedField(read_only=True)
+    creator = UserSerializer(read_only=True)
+    posts = PostSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Thread
+        fields = ('id', 'title', 'board', 'creator', 'created', 'posts')
+        read_only_fields = ('created',)
 
 
 class PostCreateSerializer(serializers.ModelSerializer):
