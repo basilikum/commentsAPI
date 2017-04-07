@@ -8,6 +8,8 @@ from django.db import models
 
 from common.models import random_id
 
+from .validators import validate_vote_value
+
 
 def generate_site_id():
     return random_id(Site, 7)
@@ -156,7 +158,7 @@ class Post(models.Model):
     site = models.ForeignKey(Site, models.CASCADE, related_name='posts')
 
     def __unicode__(self):
-        return '{}'.format(self.thread.title)
+        return '{}'.format(self.id)
 
 
 class Vote(models.Model):
@@ -165,7 +167,7 @@ class Vote(models.Model):
         settings.AUTH_USER_MODEL, models.SET_NULL,
         null=True, blank=True, related_name='votes'
     )
-    positive = models.BooleanField()
+    value = models.IntegerField(validators=[validate_vote_value])
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
 
@@ -174,5 +176,5 @@ class Vote(models.Model):
         index_together = ['post', 'creator']
 
     def __unicode__(self):
-        v = '+1' if self.positive else '-1'
+        v = '+1' if self.value == 1 else '-1'
         return u'{} by {} on {}'.format(v, self.creator.display_name, self.post_id)

@@ -18,7 +18,9 @@ class BoardsFilterBackend(BaseFilterBackend):
 
 
 class PostFilter(FilterSet):
-
     class Meta:
         model = Post
-        fields = ['thread', 'parent']
+        fields = {
+            'parent': ['exact', 'isnull'],
+            'thread': ['exact'],
+        }

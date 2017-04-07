@@ -5,7 +5,6 @@ from rest_framework import serializers
 
 from authentication.serializers import UserSerializer
 
-from .helper import posts_with_votes
 from .models import Board, Post, Site, Thread, Vote
 from .url_processor import normalize_url
 
@@ -116,7 +115,7 @@ class VoteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Vote
         fields = (
-            'positive',
+            'value',
         )
 
 
@@ -127,35 +126,27 @@ class PostSerializer(serializers.ModelSerializer):
     site = serializers.PrimaryKeyRelatedField(read_only=True)
     creator = UserSerializer(read_only=True)
     number_of_children = serializers.IntegerField(read_only=True)
-    #own_vote = serializers.SerializerMethodField()
-    plus1s = serializers.IntegerField()
-    minus1s = serializers.IntegerField()
-    votes = VoteSerializer(many=True, read_only=True)
+    votes = serializers.SerializerMethodField()
 
     class Meta:
         model = Post
         fields = (
             'id', 'text', 'thread', 'parent', 'origin',
             'site', 'creator', 'created', 'number_of_children',
-            'plus1s', 'minus1s', 'votes'
+            'votes', 'modified'
         )
 
-    def get_own_vote(self, obj):
-        try:
-            vote = Vote.objects.get(post=obj, creator=self.context['request'].user)
-            return 1 if vote.positive else -1
-        except Vote.DoesNotExist:
-            return 0
+    def get_votes(self, obj):
+        return PostVotesSerializer(obj, context=self.context).data
 
 
 class ThreadDetailSerializer(serializers.ModelSerializer):
     board = serializers.PrimaryKeyRelatedField(read_only=True)
     creator = UserSerializer(read_only=True)
-    posts = PostSerializer(many=True, read_only=True)
 
     class Meta:
         model = Thread
-        fields = ('id', 'title', 'board', 'creator', 'created', 'posts')
+        fields = ('id', 'title', 'board', 'creator', 'created')
         read_only_fields = ('created',)
 
 
@@ -180,14 +171,16 @@ class PostCreateSerializer(serializers.ModelSerializer):
         return origin.parent
 
     def create(self, validated_data):
+        parent = self.get_parent(validated_data['origin'])
         post = Post.objects.create(
             thread=validated_data['origin'].thread,
             text=validated_data['text'],
             origin=validated_data['origin'],
-            parent=self.get_parent(validated_data['origin']),
+            parent=parent,
             site=validated_data['site'],
             creator=validated_data['creator']
         )
+        parent.save()
         return post
 
     def to_representation(self, obj):
@@ -213,32 +206,54 @@ class PostDetailSerializer(serializers.ModelSerializer):
         )
 
 
-class PostVotesSerializer(serializers.Serializer):
-    value = serializers.IntegerField()
-    post = serializers.PrimaryKeyRelatedField(queryset=Post.objects.all())
-    user = serializers.PrimaryKeyRelatedField(
-        default=serializers.CurrentUserDefault(),
-        read_only=True
-    )
+class PostVotesSerializer(serializers.ModelSerializer):
+    own = serializers.IntegerField(source='votes_own')
+    plus = serializers.IntegerField(source='votes_plus', read_only=True)
+    minus = serializers.IntegerField(source='votes_minus', read_only=True)
+
+    class Meta:
+        model = Post
+        fields = (
+            'plus', 'minus', 'own'
+        )
 
     def validate(self, data):
-        if data['value'] not in [-1, 1]:
+        print data
+        if data['votes_own'] not in [-1, 0, 1]:
             raise serializers.ValidationError('not allowed value!')
         return data
 
-    def create(self, validated_data):
-        return Vote.objects.create(
-            post=validated_data['post'],
-            positive=validated_data['value'] > 0,
-            creator=validated_data['user']
-        )
-
     def update(self, instance, validated_data):
-        instance.positive = validated_data['value'] > 0
-        instance.save()
-        return instance
+        creator = self.context['request'].user
+        value = self.validated_data['votes_own']
+        try:
+            vote = Vote.objects.get(post=instance, creator=creator)
+            if value == 0:
+                vote.delete()
+            else:
+                vote.value = value
+                vote.save()
+        except Vote.DoesNotExist:
+            if value != 0:
+                Vote.objects.create(
+                    post=instance,
+                    value=value,
+                    creator=creator
+                )
+
+        return Post.objects.prefetch_related('votes').get(id=instance.id)
 
     def to_representation(self, obj):
+        votes = list(obj.votes.all())
+        plus = len([v for v in votes if v.value == 1])
+        minus = len([v for v in votes if v.value == -1])
+        owns = [v for v in votes if v.creator_id == self.context['request'].user.id]
+        if len(owns) > 0:
+            own = owns[0].value
+        else:
+            own = 0
         return {
-            'value': 1 if obj.positive else -1
+            'own':own,
+            'plus': plus,
+            'minus': minus
         }
