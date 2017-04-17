@@ -14,5 +14,4 @@ urlpatterns = [
     url(r'^posts/$', views.PostListCreate.as_view()),
     url(r'^posts/(?P<pk>[a-zA-Z0-9_\-]{11})/$', views.PostDetail.as_view()),
     url(r'^posts/(?P<pk>[a-zA-Z0-9_\-]{11})/children/$', views.PostChildren.as_view()),
-    url(r'^posts/(?P<pk>[a-zA-Z0-9_\-]{11})/votes/$', views.PostVotes.as_view())
 ]

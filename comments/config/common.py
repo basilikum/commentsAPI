@@ -46,6 +46,7 @@ THIRD_PARTY_APPS = (
 LOCAL_APPS = (
     'authentication',
     'boards',
+    'votes'
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -208,11 +209,13 @@ LOGGING = {
         },
     },
     'loggers': {
+        '''
         'django.db.backends': {
             'handlers': ['console'],
             'level': 'DEBUG',
             'propagate': True,
         },
+        '''
         'django.request': {
             'handlers': ['mail_admins'],
             'level': 'ERROR',
@@ -286,3 +289,7 @@ GOOGLE_SECRET = '4wy28emUr9bCMOqHC8lytNzV'
 
 # FACEBOOK
 FACEBOOK_SECRET = 'bc38990a0e6a45326521c862609c508d'
+
+
+# POSTS
+POSTS_FROZEN_AFTER = 10

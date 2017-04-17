@@ -4,8 +4,10 @@
 from rest_framework import serializers
 
 from authentication.serializers import UserSerializer
+from votes.models import VoteEntity
+from votes.serializers import VoteEntitySerializer
 
-from .models import Board, Post, Site, Thread, Vote
+from .models import Board, Post, Site, Thread
 from .url_processor import normalize_url
 
 
@@ -111,14 +113,6 @@ class ThreadCreateSerializer(serializers.Serializer):
         return ThreadSerializer(obj).data
 
 
-class VoteSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Vote
-        fields = (
-            'value',
-        )
-
-
 class PostSerializer(serializers.ModelSerializer):
     parent = serializers.PrimaryKeyRelatedField(read_only=True)
     origin = serializers.PrimaryKeyRelatedField(read_only=True)
@@ -126,18 +120,15 @@ class PostSerializer(serializers.ModelSerializer):
     site = serializers.PrimaryKeyRelatedField(read_only=True)
     creator = UserSerializer(read_only=True)
     number_of_children = serializers.IntegerField(read_only=True)
-    votes = serializers.SerializerMethodField()
+    vote_entity = VoteEntitySerializer()
 
     class Meta:
         model = Post
         fields = (
             'id', 'text', 'thread', 'parent', 'origin',
             'site', 'creator', 'created', 'number_of_children',
-            'votes', 'modified'
+            'vote_entity', 'modified'
         )
-
-    def get_votes(self, obj):
-        return PostVotesSerializer(obj, context=self.context).data
 
 
 class ThreadDetailSerializer(serializers.ModelSerializer):
@@ -166,7 +157,7 @@ class PostCreateSerializer(serializers.ModelSerializer):
         )
 
     def get_parent(self, origin):
-        if not origin.parent or origin.parent == origin.origin:
+        if not origin.parent or not origin.parent.parent:
             return origin
         return origin.parent
 
@@ -178,7 +169,10 @@ class PostCreateSerializer(serializers.ModelSerializer):
             origin=validated_data['origin'],
             parent=parent,
             site=validated_data['site'],
-            creator=validated_data['creator']
+            creator=validated_data['creator'],
+            vote_entity=VoteEntity.objects.create(
+                creator=validated_data['creator']
+            )
         )
         parent.save()
         return post
@@ -204,56 +198,3 @@ class PostDetailSerializer(serializers.ModelSerializer):
             'id', 'thread', 'parent', 'origin',
             'site', 'creator', 'created'
         )
-
-
-class PostVotesSerializer(serializers.ModelSerializer):
-    own = serializers.IntegerField(source='votes_own')
-    plus = serializers.IntegerField(source='votes_plus', read_only=True)
-    minus = serializers.IntegerField(source='votes_minus', read_only=True)
-
-    class Meta:
-        model = Post
-        fields = (
-            'plus', 'minus', 'own'
-        )
-
-    def validate(self, data):
-        print data
-        if data['votes_own'] not in [-1, 0, 1]:
-            raise serializers.ValidationError('not allowed value!')
-        return data
-
-    def update(self, instance, validated_data):
-        creator = self.context['request'].user
-        value = self.validated_data['votes_own']
-        try:
-            vote = Vote.objects.get(post=instance, creator=creator)
-            if value == 0:
-                vote.delete()
-            else:
-                vote.value = value
-                vote.save()
-        except Vote.DoesNotExist:
-            if value != 0:
-                Vote.objects.create(
-                    post=instance,
-                    value=value,
-                    creator=creator
-                )
-
-        return Post.objects.prefetch_related('votes').get(id=instance.id)
-
-    def to_representation(self, obj):
-        votes = list(obj.votes.all())
-        plus = len([v for v in votes if v.value == 1])
-        minus = len([v for v in votes if v.value == -1])
-        owns = [v for v in votes if v.creator_id == self.context['request'].user.id]
-        if len(owns) > 0:
-            own = owns[0].value
-        else:
-            own = 0
-        return {
-            'own':own,
-            'plus': plus,
-            'minus': minus
-        }

@@ -7,8 +7,7 @@ from django.conf import settings
 from django.db import models
 
 from common.models import random_id
-
-from .validators import validate_vote_value
+from votes.models import VoteEntity
 
 
 def generate_site_id():
@@ -156,25 +155,12 @@ class Post(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
     site = models.ForeignKey(Site, models.CASCADE, related_name='posts')
+    vote_entity = models.ForeignKey(
+        VoteEntity, models.CASCADE,
+        null=True, blank=True, related_name='+'
+    )
 
     def __unicode__(self):
         return '{}'.format(self.id)
 
 
-class Vote(models.Model):
-    post = models.ForeignKey(Post, models.CASCADE, related_name='votes')
-    creator = models.ForeignKey(
-        settings.AUTH_USER_MODEL, models.SET_NULL,
-        null=True, blank=True, related_name='votes'
-    )
-    value = models.IntegerField(validators=[validate_vote_value])
-    created = models.DateTimeField(auto_now_add=True)
-    modified = models.DateTimeField(auto_now=True)
-
-    class Meta:
-        unique_together = ('post', 'creator')
-        index_together = ['post', 'creator']
-
-    def __unicode__(self):
-        v = '+1' if self.value == 1 else '-1'
-        return u'{} by {} on {}'.format(v, self.creator.display_name, self.post_id)

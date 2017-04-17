@@ -1,9 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from django.db.models import Count, Case, When, CharField, Prefetch
-from django.shortcuts import get_object_or_404
-
+from django.db.models import Count, Sum
 from django_filters.rest_framework import DjangoFilterBackend
 
 from rest_framework.filters import OrderingFilter, SearchFilter
@@ -11,30 +9,32 @@ from rest_framework.generics import (
     ListAPIView,
     ListCreateAPIView,
     RetrieveAPIView,
-    RetrieveUpdateAPIView
+    RetrieveUpdateAPIView,
+    RetrieveUpdateDestroyAPIView
 )
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
-from rest_framework.response import Response
-from rest_framework.views import APIView
 
 from .filter import (
     BoardsFilterBackend,
     PostFilter,
 )
-from .models import Board, Post, Thread, Vote
+from .models import Board, Post, Thread
 from .pagination import StandardPagination
+from .permissions import IsOwnerAndPostIsNotOlderThan
 from .serializers import (
     BoardSerializer,
     BoardDetailSerializer,
     BoardByUrlSerializer,
     PostSerializer,
     PostCreateSerializer,
-    PostDetailSerializer,
-    PostVotesSerializer,
     ThreadSerializer,
     ThreadCreateSerializer,
     ThreadDetailSerializer
 )
+
+
+def annotated_posts():
+    return Post.objects.annotate(votes_sum=Sum('votes__value'))
 
 
 class BoardList(ListAPIView):
@@ -95,17 +95,17 @@ class PostListCreate(ListCreateAPIView):
     filter_backends = (DjangoFilterBackend, SearchFilter, OrderingFilter)
     filter_class = PostFilter
     search_fields = ('text',)
-    ordering_fields = ('modified',)
+    ordering_fields = ('modified', 'vote_entity__total', 'number_of_children')
     ordering = ('-modified',)
     pagination_class = StandardPagination
 
     def get_queryset(self):
         return Post.objects \
             .annotate(
-                number_of_children=Count('children', distinct=True)
+                number_of_children=Count('children', distinct=True),
             ) \
-            .prefetch_related('votes') \
-            .select_related('creator')
+            .prefetch_related('vote_entity__votes') \
+            .select_related('creator', 'vote_entity')
 
     def get_serializer_class(self):
         if self.request.method == 'POST':
@@ -122,31 +122,21 @@ class PostChildren(ListAPIView):
     def get_queryset(self):
         pk = self.kwargs['pk']
         return Post.objects \
-            .prefetch_related('votes') \
-            .select_related('creator') \
+            .prefetch_related('vote_entity__votes') \
+            .select_related('creator', 'vote_entity') \
             .filter(parent_id=pk) \
             .exclude(parent__parent=None) \
             .order_by('created')
 
 
-class PostVotes(RetrieveUpdateAPIView):
-    permission_classes = (IsAuthenticatedOrReadOnly,)
-    serializer_class = PostVotesSerializer
+class PostDetail(RetrieveUpdateDestroyAPIView):
+    permission_classes = (IsAuthenticatedOrReadOnly, IsOwnerAndPostIsNotOlderThan)
+    serializer_class = PostSerializer
 
     def get_queryset(self):
         return Post.objects \
-            .prefetch_related('votes') \
-            .select_related('creator')
-
-    def get_serializer_context(self):
-        return {
-            'request': self.request
-        }
-
-
-class PostDetail(RetrieveUpdateAPIView):
-    queryset = Post.objects.prefetch_related('votes').all()
-    permission_classes = (IsAuthenticatedOrReadOnly,)
-    serializer_class = PostDetailSerializer
-
-
+            .annotate(
+                number_of_children=Count('children', distinct=True),
+            ) \
+            .prefetch_related('vote_entity__votes') \
+            .select_related('creator', 'vote_entity')

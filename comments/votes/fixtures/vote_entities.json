@@ -1,0 +1,74 @@
+[
+    {
+        "model": "votes.voteentity",
+        "pk": "aaaaaaaaaaa",
+        "fields": {
+            "total": 0,
+            "plus": 0,
+            "minus": 0
+        }
+    },
+    {
+        "model": "votes.voteentity",
+        "pk": "bbbbbbbbbbb",
+        "fields": {
+            "total": 0,
+            "plus": 0,
+            "minus": 0
+        }
+    },
+    {
+        "model": "votes.voteentity",
+        "pk": "ccccccccccc",
+        "fields": {
+            "total": 0,
+            "plus": 0,
+            "minus": 0
+        }
+    },
+    {
+        "model": "votes.voteentity",
+        "pk": "ddddddddddd",
+        "fields": {
+            "total": 0,
+            "plus": 0,
+            "minus": 0
+        }
+    },
+    {
+        "model": "votes.voteentity",
+        "pk": "eeeeeeeeeee",
+        "fields": {
+            "total": 0,
+            "plus": 0,
+            "minus": 0
+        }
+    },
+    {
+        "model": "votes.voteentity",
+        "pk": "fffffffffff",
+        "fields": {
+            "total": 0,
+            "plus": 0,
+            "minus": 0
+        }
+    },
+    {
+        "model": "votes.voteentity",
+        "pk": "ggggggggggg",
+        "fields": {
+            "total": 0,
+            "plus": 0,
+            "minus": 0
+        }
+    },
+    {
+        "model": "votes.voteentity",
+        "pk": "hhhhhhhhhhh",
+        "fields": {
+            "total": 0,
+            "plus": 0,
+            "minus": 0
+        }
+    }
+]
