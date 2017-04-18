@@ -65,7 +65,10 @@ class BoardByUrl(RetrieveAPIView):
 
 
 class ThreadListCreate(ListCreateAPIView):
-    queryset = Thread.objects.all()
+    queryset = Thread.objects \
+        .select_related('original_post', 'original_post__vote_entity') \
+        .prefetch_related('original_post__vote_entity__votes') \
+        .all()
     permission_classes = (IsAuthenticatedOrReadOnly,)
     filter_backends = (BoardsFilterBackend, SearchFilter, OrderingFilter)
     search_fields = ('title',)

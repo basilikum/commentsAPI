@@ -123,6 +123,11 @@ class Thread(models.Model):
     board = models.ForeignKey(Board, models.CASCADE, related_name='threads')
     raw_path = models.CharField(max_length=2000)
     title = models.CharField(max_length=100)
+    original_post = models.ForeignKey(
+        'Post', models.CASCADE,
+        null=True, blank=True,
+        related_name='+'
+    )
 
     creator = models.ForeignKey(
         settings.AUTH_USER_MODEL, models.SET_NULL,
