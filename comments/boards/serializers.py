@@ -134,7 +134,10 @@ class ThreadCreateSerializer(serializers.Serializer):
             thread=thread,
             text=validated_data['text'],
             site=board.site,
-            creator=user
+            creator=user,
+            vote_entity=VoteEntity.objects.create(
+                creator=user
+            )
         )
         thread.original_post = post
         thread.save()
