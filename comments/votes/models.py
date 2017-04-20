@@ -50,4 +50,4 @@ class Vote(models.Model):
 
     def __unicode__(self):
         v = '+1' if self.value == 1 else '-1'
-        return u'{} by {} on {}'.format(v, self.creator.display_name, self.post_id)
+        return u'{} by {} on {}'.format(v, self.creator.display_name, self.vote_entity_id)

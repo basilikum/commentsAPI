@@ -92,10 +92,16 @@ class ThreadSerializer(serializers.ModelSerializer):
     board = serializers.PrimaryKeyRelatedField(read_only=True)
     creator = UserSerializer(read_only=True)
     original_post = OriginalPostSerializer(read_only=True)
+    number_of_children = serializers.IntegerField(read_only=True)
+    number_of_descendants = serializers.IntegerField(read_only=True)
 
     class Meta:
         model = Thread
-        fields = ('id', 'title', 'board', 'creator', 'created', 'original_post')
+        fields = (
+            'id', 'title', 'board',
+            'creator', 'created', 'original_post',
+            'number_of_children', 'number_of_descendants'
+        )
 
 
 class ThreadCreateSerializer(serializers.Serializer):

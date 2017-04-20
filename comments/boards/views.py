@@ -66,6 +66,10 @@ class BoardByUrl(RetrieveAPIView):
 
 class ThreadListCreate(ListCreateAPIView):
     queryset = Thread.objects \
+        .annotate(
+            number_of_children=Count('original_post__children', distinct=True),
+            number_of_descendants=Count('original_post__children__children', distinct=True)
+        ) \
         .select_related('original_post', 'original_post__vote_entity') \
         .prefetch_related('original_post__vote_entity__votes') \
         .all()
