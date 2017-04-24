@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from django.db import models
+from django.core.validators import MinLengthValidator
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 
 from common.fields import EmailNullField
@@ -10,31 +11,30 @@ from common.models import random_id
 
 class CMUserManager(BaseUserManager):
 
-    def _create_user(self, username, display_name, password, is_admin):
+    def _create_user(self, username, email, password, is_admin):
         user = self.model(
             username=username,
-            display_name=display_name,
+            email=email,
             is_admin=is_admin
         )
         user.set_password(password)
         user.save(using=self._db)
         return user
 
-    def create_user(self, username, display_name, password=None):
-        return self._create_user(username, display_name, password, False)
+    def create_user(self, username, email, password=None):
+        return self._create_user(username, email, password, False)
 
-    def create_superuser(self, username, display_name, password):
-        return self._create_user(username, display_name, password, True)
+    def create_superuser(self, username, email, password):
+        return self._create_user(username, email, password, True)
 
 
 class CMUser(AbstractBaseUser, PermissionsMixin):
-    username = models.CharField(max_length=64, unique=True)
-    display_name = models.CharField(max_length=120, blank=True)
-    email = EmailNullField(
-        verbose_name='email address',
-        max_length=255, unique=True,
-        blank=True, null=True
+    username = models.CharField(
+        max_length=32, unique=True,
+        validators=[MinLengthValidator(3)]
     )
+    display_name = models.CharField(max_length=32, blank=True)
+    email = models.EmailField(max_length=255, blank=True)
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
     is_admin = models.BooleanField(default=False)

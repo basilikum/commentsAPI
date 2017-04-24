@@ -112,6 +112,7 @@ def get_payload(user):
         'username': user.username,
         'user_id': user.id,
         'permissions': get_permissions(user),
+        'is_active': user.is_active,
         'exp': datetime.utcnow() + settings.JWT_EXPIRATION_DELTA
     }
     if settings.JWT_ALLOW_REFRESH:

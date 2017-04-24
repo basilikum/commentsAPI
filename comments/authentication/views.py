@@ -12,6 +12,7 @@ import requests
 from requests_oauthlib import OAuth1
 
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
+from rest_framework.generics import CreateAPIView
 from rest_framework.response import Response
 from rest_framework.serializers import ValidationError
 from rest_framework.views import APIView
@@ -24,6 +25,7 @@ from .jwt_helper import (
     verify_token,
     refresh_token
 )
+from .serializers import UserCreateSocialSerializer, UserCreateLocalSerializer
 
 
 @api_view(['POST'], exclude_from_schema=True)
@@ -80,9 +82,13 @@ def twitter(request):
         try:
             user = User.objects.get(twitter=profile['user_id'])
         except User.DoesNotExist:
-            user = User.objects.create_user('TW.' + profile['screen_name'], profile['screen_name'])
-            user.twitter = profile['user_id']
-            user.save()
+            serializer = UserCreateSocialSerializer(data={
+                'username': profile['screen_name'],
+                'soc_id': profile['user_id'],
+                'soc_provider': 'twitter'
+            })
+            serializer.is_valid()
+            user = serializer.save()
         payload = get_payload(user)
         token = jwt_encode(payload)
         return JsonResponse({'token': token})
@@ -125,9 +131,13 @@ def google(request):
     try:
         user = User.objects.get(google=profile['sub'])
     except User.DoesNotExist:
-        user = User.objects.create_user('GG.' + profile['name'], profile['name'])
-        user.google = profile['sub']
-        user.save()
+        serializer = UserCreateSocialSerializer(data={
+            'username': profile['name'],
+            'soc_id': profile['sub'],
+            'soc_provider': 'google'
+        })
+        serializer.is_valid()
+        user = serializer.save()
     payload = get_payload(user)
     token = jwt_encode(payload)
     return JsonResponse({'token': token})
@@ -156,10 +166,27 @@ def facebook(request):
     try:
         user = User.objects.get(facebook=profile['id'])
     except User.DoesNotExist:
-        user = User.objects.create_user('FB.' + profile['name'], profile['name'])
-        user.facebook = profile['id']
-        user.save()
+        serializer = UserCreateSocialSerializer(data={
+            'username': profile['name'],
+            'soc_id': profile['id'],
+            'soc_provider': 'facebook'
+        })
+        serializer.is_valid()
+        user = serializer.save()
     payload = get_payload(user)
     token = jwt_encode(payload)
     return JsonResponse({'token': token})
 
+
+class UserExists(APIView):
+    permission_classes = ()
+
+    def get(self, request, format=None):
+        username = request.query_params.get('username')
+        User = get_user_model()
+        return Response({'exists': User.objects.filter(username=username).exists()})
+
+
+class UserCreate(CreateAPIView):
+    permission_classes = ()
+    serializer_class = UserCreateLocalSerializer
