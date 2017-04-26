@@ -17,6 +17,8 @@ from rest_framework.response import Response
 from rest_framework.serializers import ValidationError
 from rest_framework.views import APIView
 
+from common.permissions import HasValidRecaptchaResponse
+
 from .jwt_helper import (
     jwt_encode,
     get_payload,
@@ -188,5 +190,5 @@ class UserExists(APIView):
 
 
 class UserCreate(CreateAPIView):
-    permission_classes = ()
+    permission_classes = (HasValidRecaptchaResponse,)
     serializer_class = UserCreateLocalSerializer
