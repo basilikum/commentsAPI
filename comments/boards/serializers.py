@@ -7,14 +7,37 @@ from authentication.serializers import UserSerializer
 from votes.models import VoteEntity
 from votes.serializers import VoteEntitySerializer
 
-from .models import Board, Post, Site, Thread
+from .models import Board, Post, Site, Thread, QsRule, ReRule
 from .url_processor import normalize_url
+
+
+class QsRuleSerializer(serializers.ModelSerializer):
+    id = serializers.IntegerField(required=False)
+    class Meta:
+        model = QsRule
+        fields = ('id', 'path', 'params')
+
+
+class ReRuleSerializer(serializers.ModelSerializer):
+    id = serializers.IntegerField(required=False)
+    class Meta:
+        model = ReRule
+        fields = ('id', 'regex', 'repl')
 
 
 class SiteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Site
         fields = ('id', 'netloc',)
+
+
+class SiteDetailSerializer(serializers.ModelSerializer):
+    qs_rules = QsRuleSerializer(many=True)
+    re_rules = ReRuleSerializer(many=True)
+    class Meta:
+        model = Site
+        fields = ('id', 'netloc', 'qs_rules', 're_rules')
+
 
 
 class BoardSerializer(serializers.ModelSerializer):

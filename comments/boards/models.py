@@ -23,23 +23,7 @@ def generate_post_id():
     return random_id(Post, 11)
 
 
-class Site(models.Model):
-    id = models.CharField(max_length=7, primary_key=True, default=generate_site_id)
-    netloc = models.URLField(max_length=100, unique=True, db_index=True)
-
-    creator = models.ForeignKey(
-        settings.AUTH_USER_MODEL, models.SET_NULL,
-        null=True, blank=True, related_name='sites'
-    )
-    created = models.DateTimeField(auto_now_add=True)
-    modified = models.DateTimeField(auto_now=True)
-
-    def __unicode__(self):
-        return self.netloc
-
-
 class ReRule(models.Model):
-    site = models.ForeignKey(Site, models.CASCADE, related_name='re_rules')
     regex = models.CharField(max_length=500)
     repl = models.CharField(max_length=500)
 
@@ -47,15 +31,13 @@ class ReRule(models.Model):
         return re.sub(self.regex, self.repl, path)
 
     def __unicode__(self):
-        return '{} ({} => {})'.format(
-            self.site.netloc,
+        return '{} => {}'.format(
             self.regex,
             self.repl
         )
 
 
 class QsRule(models.Model):
-    site = models.ForeignKey(Site, models.CASCADE, related_name='qs_rules')
     path = models.CharField(max_length=2000)
     params = models.CharField(max_length=500)
 
@@ -78,16 +60,29 @@ class QsRule(models.Model):
             return ''
         return '?' + '&'.join(parts)
 
-    class Meta:
-        unique_together = ('site', 'path')
-        index_together = ['site', 'path']
-
     def __unicode__(self):
-        return '{}{}?{}'.format(
-            self.site.netloc,
+        return '{}?{}'.format(
             self.path,
             self.params
         )
+
+
+class Site(models.Model):
+    id = models.CharField(max_length=7, primary_key=True, default=generate_site_id)
+    netloc = models.CharField(max_length=100, unique=True, db_index=True)
+
+    qs_rules = models.ManyToManyField(QsRule, related_name='sites', blank=True)
+    re_rules = models.ManyToManyField(ReRule, related_name='sites', blank=True)
+
+    creator = models.ForeignKey(
+        settings.AUTH_USER_MODEL, models.SET_NULL,
+        null=True, blank=True, related_name='sites'
+    )
+    created = models.DateTimeField(auto_now_add=True)
+    modified = models.DateTimeField(auto_now=True)
+
+    def __unicode__(self):
+        return self.netloc
 
 
 class Board(models.Model):

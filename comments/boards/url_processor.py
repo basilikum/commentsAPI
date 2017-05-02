@@ -17,7 +17,7 @@ def normalize_url(url):
         return netloc, path
     path = apply_re_rules(path, site.re_rules.all())
     try:
-        qs_rule = QsRule.objects.get(site=site, path=path)
+        qs_rule = QsRule.objects.get(sites=site, path=path)
     except QsRule.DoesNotExist:
         return netloc, path
     qstring = qs_rule.apply(query_params)

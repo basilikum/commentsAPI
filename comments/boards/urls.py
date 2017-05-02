@@ -9,6 +9,8 @@ urlpatterns = [
     url(r'^$', views.BoardList.as_view()),
     url(r'^(?P<pk>[a-zA-Z0-9_\-]{8})/$', views.BoardDetail.as_view()),
     url(r'^url/$', views.BoardByUrl.as_view()),
+    url(r'^sites/$', views.SiteListCreate.as_view()),
+    url(r'^sites/(?P<pk>[a-zA-Z0-9_\-]{7})/$', views.SiteDetail.as_view()),
     url(r'^threads/$', views.ThreadListCreate.as_view()),
     url(r'^threads/(?P<pk>[a-zA-Z0-9_\-]{11})/$', views.ThreadDetail.as_view()),
     url(r'^posts/$', views.PostListCreate.as_view()),

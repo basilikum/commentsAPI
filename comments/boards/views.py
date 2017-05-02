@@ -12,13 +12,13 @@ from rest_framework.generics import (
     RetrieveUpdateAPIView,
     RetrieveUpdateDestroyAPIView
 )
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAdminUser
 
 from .filter import (
     BoardsFilterBackend,
     PostFilter,
 )
-from .models import Board, Post, Thread
+from .models import Board, Post, Site, Thread
 from .pagination import StandardPagination
 from .permissions import IsOwnerAndPostIsNotOlderThan
 from .serializers import (
@@ -27,6 +27,8 @@ from .serializers import (
     BoardByUrlSerializer,
     PostSerializer,
     PostCreateSerializer,
+    SiteSerializer,
+    SiteDetailSerializer,
     ThreadSerializer,
     ThreadCreateSerializer,
     ThreadDetailSerializer
@@ -35,6 +37,22 @@ from .serializers import (
 
 def annotated_posts():
     return Post.objects.annotate(votes_sum=Sum('votes__value'))
+
+
+class SiteListCreate(ListCreateAPIView):
+    queryset = Site.objects.all()
+    serializer_class = SiteSerializer
+    permission_classes = (IsAdminUser,)
+    filter_backends = (SearchFilter, OrderingFilter)
+    search_fields = ('netloc',)
+    ordering_fields = ('netloc', 'created')
+    ordering = ('netloc',)
+
+
+class SiteDetail(RetrieveUpdateAPIView):
+    queryset = Site.objects.prefetch_related('re_rules', 'qs_rules').all()
+    serializer_class = SiteDetailSerializer
+    permission_classes = (IsAdminUser,)
 
 
 class BoardList(ListAPIView):
