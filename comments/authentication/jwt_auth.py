@@ -23,6 +23,7 @@ class JWTAuthentication(BaseAuthentication):
         user = check_user(payload)
         if user is None:
             raise exceptions.AuthenticationFailed('Authentication failed.')
+        print user
         return (user, token)
 
     def authenticate_header(self, request):

@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import json
+import re
 from urlparse import parse_qsl
 
 from django.conf import settings
@@ -12,9 +13,9 @@ import requests
 from requests_oauthlib import OAuth1
 
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
-from rest_framework.generics import CreateAPIView
+from rest_framework.generics import CreateAPIView, UpdateAPIView, RetrieveAPIView
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-from rest_framework.serializers import ValidationError
 from rest_framework.views import APIView
 
 from common.permissions import HasValidRecaptchaResponse
@@ -22,12 +23,16 @@ from common.permissions import HasValidRecaptchaResponse
 from .jwt_helper import (
     jwt_encode,
     get_payload,
-    get_token_from_request,
-    get_token_payload,
     verify_token,
     refresh_token
 )
-from .serializers import UserCreateSocialSerializer, UserCreateLocalSerializer
+
+from .serializers import (
+    UserSerializer,
+    UserCreateSocialSerializer,
+    UserCreateLocalSerializer,
+    UserFinalizeLocalSerializer
+)
 
 
 @api_view(['POST'], exclude_from_schema=True)
@@ -71,6 +76,7 @@ def refresh_jwt_token(request):
 def twitter(request):
     request_token_url = 'https://api.twitter.com/oauth/request_token'
     access_token_url = 'https://api.twitter.com/oauth/access_token'
+    user_url = 'https://api.twitter.com/1.1/users/show.json'
     User = get_user_model()
     if request.data.get('oauth_token') and request.data.get('oauth_verifier'):
         auth = OAuth1(
@@ -81,11 +87,16 @@ def twitter(request):
         )
         r = requests.post(access_token_url, auth=auth)
         profile = dict(parse_qsl(r.text))
+
+        r = requests.get(user_url, auth=auth)
+        print r.text
+
         try:
             user = User.objects.get(twitter=profile['user_id'])
         except User.DoesNotExist:
             serializer = UserCreateSocialSerializer(data={
                 'username': profile['screen_name'],
+                'ext_picture_url': '',
                 'soc_id': profile['user_id'],
                 'soc_provider': 'twitter'
             })
@@ -124,17 +135,18 @@ def google(request):
     }
 
     r = requests.post(access_token_url, data=payload)
-    token = json.loads(r.text)
+    token = r.json()
     headers = {'Authorization': 'Bearer {0}'.format(token['access_token'])}
 
     r = requests.get(people_api_url, headers=headers)
-    profile = json.loads(r.text)
-
+    profile = r.json()
+    picture_url = re.sub(r'sz=[0-9]+$', 'sz=64', profile.get('picture', ''))
     try:
         user = User.objects.get(google=profile['sub'])
     except User.DoesNotExist:
         serializer = UserCreateSocialSerializer(data={
             'username': profile['name'],
+            'ext_picture_url': picture_url,
             'soc_id': profile['sub'],
             'soc_provider': 'google'
         })
@@ -150,7 +162,7 @@ def google(request):
 @permission_classes([])
 def facebook(request):
     access_token_url = 'https://graph.facebook.com/v2.3/oauth/access_token'
-    graph_api_url = 'https://graph.facebook.com/v2.3/me'
+    graph_api_url = 'https://graph.facebook.com/v2.9'
     User = get_user_model()
     params = {
         'client_id': request.data.get('clientId'),
@@ -162,14 +174,24 @@ def facebook(request):
     r = requests.get(access_token_url, params=params)
     access_token = json.loads(r.text)
 
-    r = requests.get(graph_api_url, params=access_token)
+    r = requests.get(graph_api_url + '/me', params=access_token)
     profile = json.loads(r.text)
+
+    picture_params = {
+        'width': 64,
+        'format': 'json',
+        'redirect': 'false'
+    }
+    picture_url = '{}/{}/picture'.format(graph_api_url, profile['id'])
+    r = requests.get(picture_url, params=picture_params)
+    picture_url = r.json()['data']['url']
 
     try:
         user = User.objects.get(facebook=profile['id'])
     except User.DoesNotExist:
         serializer = UserCreateSocialSerializer(data={
             'username': profile['name'],
+            'ext_picture_url': picture_url,
             'soc_id': profile['id'],
             'soc_provider': 'facebook'
         })
@@ -192,3 +214,17 @@ class UserExists(APIView):
 class UserCreate(CreateAPIView):
     permission_classes = (HasValidRecaptchaResponse,)
     serializer_class = UserCreateLocalSerializer
+
+
+class UserFinalize(UpdateAPIView):
+    permission_classes = (IsAuthenticated, HasValidRecaptchaResponse)
+    serializer_class = UserFinalizeLocalSerializer
+
+    def get_object(self):
+        return self.request.user
+
+
+class UserDetail(RetrieveAPIView):
+    permission_classes = ()
+    queryset = get_user_model().objects.all()
+    serializer_class = UserSerializer

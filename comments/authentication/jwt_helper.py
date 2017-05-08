@@ -89,7 +89,7 @@ def check_user(payload):
         user = User.objects.get_by_natural_key(username)
     except User.DoesNotExist:
         return None
-    if not user.is_active:
+    if payload.get('is_active') != user.is_active:
         return None
     if not set(get_permissions(user)) == set(payload.get('permissions')):
         return None
@@ -110,11 +110,13 @@ def get_payload(user):
         'email': user.email,
         'display_name': user.display_name,
         'username': user.username,
+        'ext_picture_url': user.ext_picture_url,
         'user_id': user.id,
         'permissions': get_permissions(user),
         'is_active': user.is_active,
         'exp': datetime.utcnow() + settings.JWT_EXPIRATION_DELTA
     }
+    print payload
     if settings.JWT_ALLOW_REFRESH:
         payload['orig_iat'] = get_now_timestamp()
     if settings.JWT_AUDIENCE is not None:

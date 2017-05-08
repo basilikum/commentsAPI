@@ -44,6 +44,8 @@ class CMUser(AbstractBaseUser, PermissionsMixin):
     google = models.CharField(max_length=120, blank=True)
     facebook = models.CharField(max_length=120, blank=True)
 
+    ext_picture_url = models.URLField(max_length=2000, blank=True)
+
     objects = CMUserManager()
 
     USERNAME_FIELD = 'username'

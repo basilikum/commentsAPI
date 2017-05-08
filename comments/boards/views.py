@@ -12,7 +12,9 @@ from rest_framework.generics import (
     RetrieveUpdateAPIView,
     RetrieveUpdateDestroyAPIView
 )
-from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAdminUser
+from rest_framework.permissions import IsAdminUser
+
+from common.permissions import IsActiveOrReadOnly
 
 from .filter import (
     BoardsFilterBackend,
@@ -58,7 +60,7 @@ class SiteDetail(RetrieveUpdateAPIView):
 class BoardList(ListAPIView):
     queryset = Board.objects.all()
     serializer_class = BoardSerializer
-    permission_classes = (IsAuthenticatedOrReadOnly,)
+    permission_classes = (IsActiveOrReadOnly,)
     filter_backends = (SearchFilter, OrderingFilter)
     search_fields = ('site__netloc', 'path', 'title')
     ordering_fields = ('title', 'created')
@@ -68,12 +70,12 @@ class BoardList(ListAPIView):
 
 class BoardDetail(RetrieveUpdateAPIView):
     queryset = Board.objects.all()
-    permission_classes = (IsAuthenticatedOrReadOnly,)
+    permission_classes = (IsActiveOrReadOnly,)
     serializer_class = BoardDetailSerializer
 
 
 class BoardByUrl(RetrieveAPIView):
-    permission_classes = (IsAuthenticatedOrReadOnly,)
+    permission_classes = (IsActiveOrReadOnly,)
     serializer_class = BoardByUrlSerializer
 
     def get_object(self):
@@ -91,7 +93,7 @@ class ThreadListCreate(ListCreateAPIView):
         .select_related('original_post', 'original_post__vote_entity') \
         .prefetch_related('original_post__vote_entity__votes') \
         .all()
-    permission_classes = (IsAuthenticatedOrReadOnly,)
+    permission_classes = (IsActiveOrReadOnly,)
     filter_backends = (BoardsFilterBackend, SearchFilter, OrderingFilter)
     search_fields = ('title',)
     ordering_fields = ('title', 'created')
@@ -106,7 +108,7 @@ class ThreadListCreate(ListCreateAPIView):
 
 class ThreadDetail(RetrieveUpdateAPIView):
     queryset = Thread.objects.select_related('creator').all()
-    permission_classes = (IsAuthenticatedOrReadOnly,)
+    permission_classes = (IsActiveOrReadOnly,)
     serializer_class = ThreadDetailSerializer
 
     def get_serializer_context(self):
@@ -116,7 +118,7 @@ class ThreadDetail(RetrieveUpdateAPIView):
 
 
 class PostListCreate(ListCreateAPIView):
-    permission_classes = (IsAuthenticatedOrReadOnly,)
+    permission_classes = (IsActiveOrReadOnly,)
     filter_backends = (DjangoFilterBackend, SearchFilter, OrderingFilter)
     filter_class = PostFilter
     search_fields = ('text',)
@@ -140,7 +142,7 @@ class PostListCreate(ListCreateAPIView):
 
 class PostChildren(ListAPIView):
     serializer_class = PostSerializer
-    permission_classes = (IsAuthenticatedOrReadOnly,)
+    permission_classes = (IsActiveOrReadOnly,)
     filter_backends = (SearchFilter,)
     search_fields = ('text',)
 
@@ -155,7 +157,7 @@ class PostChildren(ListAPIView):
 
 
 class PostDetail(RetrieveUpdateDestroyAPIView):
-    permission_classes = (IsAuthenticatedOrReadOnly, IsOwnerAndPostIsNotOlderThan)
+    permission_classes = (IsActiveOrReadOnly, IsOwnerAndPostIsNotOlderThan)
     serializer_class = PostSerializer
 
     def get_queryset(self):
