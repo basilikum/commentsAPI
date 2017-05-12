@@ -5,8 +5,11 @@ from django.db import models
 from django.core.validators import MinLengthValidator
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 
-from common.fields import EmailNullField
 from common.models import random_id
+
+
+def generate_user_id():
+    return random_id(CMUser, 11, field_name='uid')
 
 
 class CMUserManager(BaseUserManager):
@@ -32,6 +35,10 @@ class CMUser(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(
         max_length=32, unique=True,
         validators=[MinLengthValidator(3)]
+    )
+    uid = models.CharField(
+        max_length=11, unique=True,
+        default=generate_user_id
     )
     display_name = models.CharField(max_length=32, blank=True)
     email = models.EmailField(max_length=255, blank=True)

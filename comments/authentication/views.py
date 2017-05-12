@@ -228,3 +228,4 @@ class UserDetail(RetrieveAPIView):
     permission_classes = ()
     queryset = get_user_model().objects.all()
     serializer_class = UserSerializer
+    lookup_field = 'uid'

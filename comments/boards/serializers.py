@@ -83,24 +83,6 @@ class BoardByUrlSerializer(serializers.Serializer):
             }
 
 
-class PostSerializer(serializers.ModelSerializer):
-    parent = serializers.PrimaryKeyRelatedField(read_only=True)
-    origin = serializers.PrimaryKeyRelatedField(read_only=True)
-    thread = serializers.PrimaryKeyRelatedField(read_only=True)
-    site = serializers.PrimaryKeyRelatedField(read_only=True)
-    creator = UserSerializer(read_only=True)
-    number_of_children = serializers.IntegerField(read_only=True)
-    vote_entity = VoteEntitySerializer()
-
-    class Meta:
-        model = Post
-        fields = (
-            'id', 'text', 'thread', 'parent', 'origin',
-            'site', 'creator', 'created', 'number_of_children',
-            'vote_entity', 'modified'
-        )
-
-
 class OriginalPostSerializer(serializers.ModelSerializer):
     vote_entity = VoteEntitySerializer()
 
@@ -121,7 +103,7 @@ class ThreadSerializer(serializers.ModelSerializer):
     class Meta:
         model = Thread
         fields = (
-            'id', 'title', 'board',
+            'id', 'title', 'board', 'raw_path',
             'creator', 'created', 'original_post',
             'number_of_children', 'number_of_descendants'
         )
@@ -184,6 +166,47 @@ class ThreadDetailSerializer(serializers.ModelSerializer):
         model = Thread
         fields = ('id', 'title', 'board', 'creator', 'created')
         read_only_fields = ('created',)
+
+
+class ThreadComplexSerializer(serializers.ModelSerializer):
+    board = BoardSerializer(read_only=True)
+    creator = UserSerializer(read_only=True)
+
+    class Meta:
+        model = Thread
+        fields = ('id', 'title', 'board', 'creator', 'created', 'raw_path')
+        read_only_fields = ('created',)
+
+
+class PostSerializer(serializers.ModelSerializer):
+    parent = serializers.PrimaryKeyRelatedField(read_only=True)
+    origin = serializers.PrimaryKeyRelatedField(read_only=True)
+    thread = serializers.PrimaryKeyRelatedField(read_only=True)
+    site = serializers.PrimaryKeyRelatedField(read_only=True)
+    creator = UserSerializer(read_only=True)
+    number_of_children = serializers.IntegerField(read_only=True)
+    vote_entity = VoteEntitySerializer()
+
+    class Meta:
+        model = Post
+        fields = (
+            'id', 'text', 'thread', 'parent', 'origin',
+            'site', 'creator', 'created', 'number_of_children',
+            'vote_entity', 'modified'
+        )
+
+
+class PostComplexSerializer(PostSerializer):
+    thread = ThreadComplexSerializer(read_only=True)
+    site = SiteSerializer(read_only=True)
+
+    class Meta:
+        model = Post
+        fields = (
+            'id', 'text', 'thread', 'parent', 'origin',
+            'site', 'creator', 'created', 'number_of_children',
+            'vote_entity', 'modified'
+        )
 
 
 class PostCreateSerializer(serializers.ModelSerializer):

@@ -111,12 +111,11 @@ def get_payload(user):
         'display_name': user.display_name,
         'username': user.username,
         'ext_picture_url': user.ext_picture_url,
-        'user_id': user.id,
+        'user_id': user.uid,
         'permissions': get_permissions(user),
         'is_active': user.is_active,
         'exp': datetime.utcnow() + settings.JWT_EXPIRATION_DELTA
     }
-    print payload
     if settings.JWT_ALLOW_REFRESH:
         payload['orig_iat'] = get_now_timestamp()
     if settings.JWT_AUDIENCE is not None:

@@ -18,7 +18,7 @@ class UserSerializer(serializers.ModelSerializer):
     name = serializers.CharField(source='username')
     class Meta:
         model = get_user_model()
-        fields = ('id', 'name', 'ext_picture_url')
+        fields = ('uid', 'name', 'ext_picture_url')
 
 
 class UserCreateSocialSerializer(serializers.Serializer):

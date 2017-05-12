@@ -28,6 +28,7 @@ from .serializers import (
     BoardDetailSerializer,
     BoardByUrlSerializer,
     PostSerializer,
+    PostComplexSerializer,
     PostCreateSerializer,
     SiteSerializer,
     SiteDetailSerializer,
@@ -122,21 +123,35 @@ class PostListCreate(ListCreateAPIView):
     filter_backends = (DjangoFilterBackend, SearchFilter, OrderingFilter)
     filter_class = PostFilter
     search_fields = ('text',)
-    ordering_fields = ('modified', 'vote_entity__total', 'number_of_children')
+    ordering_fields = (
+        'modified',
+        'created',
+        'vote_entity__total',
+        'vote_entity__plus',
+        'number_of_children'
+    )
     ordering = ('-modified',)
     pagination_class = StandardPagination
 
     def get_queryset(self):
-        return Post.objects \
+        posts = Post.objects \
             .annotate(
                 number_of_children=Count('children', distinct=True),
             ) \
             .prefetch_related('vote_entity__votes') \
             .select_related('creator', 'vote_entity')
+        if 'complex' in self.request.query_params:
+            posts = posts.select_related(
+                'thread', 'thread__board', 'site'
+            )
+        return posts
+
 
     def get_serializer_class(self):
         if self.request.method == 'POST':
             return PostCreateSerializer
+        if 'complex' in self.request.query_params:
+            return PostComplexSerializer
         return PostSerializer
 
 
