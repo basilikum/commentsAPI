@@ -1,24 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import requests
-
-from django.conf import settings
 from django.contrib.auth import get_user_model
 
 from rest_framework import serializers
-
-from .jwt_helper import (
-    jwt_encode,
-    get_payload,
-)
-
-
-class UserSerializer(serializers.ModelSerializer):
-    name = serializers.CharField(source='username')
-    class Meta:
-        model = get_user_model()
-        fields = ('uid', 'name', 'ext_picture_url')
 
 
 class UserCreateSocialSerializer(serializers.Serializer):
@@ -51,41 +36,3 @@ class UserCreateSocialSerializer(serializers.Serializer):
         user.is_active = False
         user.save()
         return user
-
-
-class UserCreateLocalSerializer(serializers.Serializer):
-    username = serializers.CharField(max_length=32, min_length=3)
-    password = serializers.CharField(min_length=8)
-    email = serializers.EmailField(max_length=255)
-
-    def create(self, validated_data):
-        User = get_user_model()
-        return User.objects.create_user(
-            validated_data['username'],
-            validated_data['email'],
-            validated_data['password']
-        )
-
-    def to_representation(self, obj):
-        payload = get_payload(obj)
-        token = jwt_encode(payload)
-        return {
-            'token': token
-        }
-
-
-class UserFinalizeLocalSerializer(serializers.Serializer):
-    username = serializers.CharField(max_length=32, min_length=3)
-
-    def update(self, user, validated_data):
-        user.username = validated_data['username']
-        user.is_active = True
-        user.save()
-        return user
-
-    def to_representation(self, obj):
-        payload = get_payload(obj)
-        token = jwt_encode(payload)
-        return {
-            'token': token
-        }

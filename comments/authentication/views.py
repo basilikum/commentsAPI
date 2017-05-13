@@ -5,20 +5,14 @@ import json
 import re
 from urlparse import parse_qsl
 
+import requests
+from requests_oauthlib import OAuth1
+
 from django.conf import settings
 from django.contrib.auth import authenticate, get_user_model
 from django.http import JsonResponse
 
-import requests
-from requests_oauthlib import OAuth1
-
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
-from rest_framework.generics import CreateAPIView, UpdateAPIView, RetrieveAPIView
-from rest_framework.permissions import IsAuthenticated
-from rest_framework.response import Response
-from rest_framework.views import APIView
-
-from common.permissions import HasValidRecaptchaResponse
 
 from .jwt_helper import (
     jwt_encode,
@@ -28,10 +22,7 @@ from .jwt_helper import (
 )
 
 from .serializers import (
-    UserSerializer,
     UserCreateSocialSerializer,
-    UserCreateLocalSerializer,
-    UserFinalizeLocalSerializer
 )
 
 
@@ -200,32 +191,3 @@ def facebook(request):
     payload = get_payload(user)
     token = jwt_encode(payload)
     return JsonResponse({'token': token})
-
-
-class UserExists(APIView):
-    permission_classes = ()
-
-    def get(self, request, format=None):
-        username = request.query_params.get('username')
-        User = get_user_model()
-        return Response({'exists': User.objects.filter(username=username).exists()})
-
-
-class UserCreate(CreateAPIView):
-    permission_classes = (HasValidRecaptchaResponse,)
-    serializer_class = UserCreateLocalSerializer
-
-
-class UserFinalize(UpdateAPIView):
-    permission_classes = (IsAuthenticated, HasValidRecaptchaResponse)
-    serializer_class = UserFinalizeLocalSerializer
-
-    def get_object(self):
-        return self.request.user
-
-
-class UserDetail(RetrieveAPIView):
-    permission_classes = ()
-    queryset = get_user_model().objects.all()
-    serializer_class = UserSerializer
-    lookup_field = 'uid'

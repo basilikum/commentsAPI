@@ -23,5 +23,5 @@ class PostFilter(FilterSet):
         fields = {
             'parent': ['exact', 'isnull'],
             'thread': ['exact'],
-            'creator': ['exact']
+            'creator__uid': ['exact']
         }

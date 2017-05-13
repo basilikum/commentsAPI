@@ -3,7 +3,7 @@
 
 from rest_framework import serializers
 
-from authentication.serializers import UserSerializer
+from users.serializers import UserSerializer
 from votes.models import VoteEntity
 from votes.serializers import VoteEntitySerializer
 

@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from __future__ import absolute_import, unicode_literals
-from os.path import exists
+from os.path import exists, join
 from datetime import timedelta
 import environ
 
@@ -46,6 +46,7 @@ THIRD_PARTY_APPS = (
 LOCAL_APPS = (
     'authentication',
     'boards',
+    'users',
     'votes'
 )
 
@@ -258,9 +259,6 @@ JWT_REFRESH_EXPIRATION_DELTA = timedelta(days=7)
 JWT_AUTH_HEADER_PREFIX = 'Bearer'
 
 
-# CUSTOM CONFIGURATION
-# ------------------------------------------------------------------------------
-
 # CORS
 CORS_ORIGIN_WHITELIST = (
     'localhost:8080'
@@ -298,3 +296,7 @@ POSTS_FROZEN_AFTER = 10
 # CAPTACHA
 RECAPTCHA_SITE_KEY = '6LcvUh4UAAAAABYHX8ukRRfY3aOwieSerjR5HcGT'
 RECAPTCHA_SECRET = '6LcvUh4UAAAAACIgexKN2HZopsmkbIBtkynG8SnJ'
+
+
+# USER PROFILE
+USER_PROFILE_PATH = join(MEDIA_ROOT, 'profiles')
