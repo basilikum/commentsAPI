@@ -16,9 +16,19 @@ from authentication.jwt_helper import (
 
 class UserSerializer(serializers.ModelSerializer):
     name = serializers.CharField(source='username')
+    has_avatar = serializers.SerializerMethodField()
+
     class Meta:
         model = get_user_model()
-        fields = ('uid', 'name', 'ext_picture_url')
+        fields = ('uid', 'name', 'created', 'has_avatar')
+
+    def get_has_avatar(self, obj):
+        file_path = os.path.join(
+            settings.USER_PROFILE_PATH,
+            obj.uid,
+            '{}.png'.format(64)
+        )
+        return os.path.exists(file_path)
 
 
 class UserCreateLocalSerializer(serializers.Serializer):
