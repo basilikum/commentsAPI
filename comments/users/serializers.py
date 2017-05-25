@@ -3,6 +3,10 @@
 
 import os.path
 
+import magic
+
+from PIL import Image
+
 from django.conf import settings
 from django.contrib.auth import get_user_model
 
@@ -80,8 +84,53 @@ class UserAvatarSerializer(serializers.Serializer):
         file_path = os.path.join(
             settings.USER_PROFILE_PATH,
             data['uid'],
-            '{}.png'.format(data['size'])
+            '{}.jpg'.format(data['size'])
         )
         if not os.path.exists(file_path):
             raise serializers.ValidationError('File does not exist!')
         return open(file_path, 'r')
+
+
+class UserAvatarUploadSerializer(serializers.Serializer):
+    file = serializers.FileField()
+    user = serializers.PrimaryKeyRelatedField(
+        default=serializers.CurrentUserDefault(),
+        read_only=True
+    )
+
+    def validate(self, data):
+        MAX_FILE_SIZE = 52428800 # 50MB
+        MIME_TYPES = [
+            'image/jpeg',
+            'image/png',
+            'image/gif'
+        ]
+        ufile = data['file']
+        size = ufile.size
+        if size > MAX_FILE_SIZE:
+            raise serializers.ValidationError('exeeded file size limit (50MB)')
+        mimetype = magic.from_buffer(ufile.read(), mime=True)
+        ufile.seek(0)
+        if mimetype not in MIME_TYPES:
+            raise serializers.ValidationError('not supported file type')
+        return data
+
+    def save(self):
+        ufile = self.validated_data['file']
+        file_path = os.path.join(
+            settings.USER_PROFILE_PATH,
+            self.validated_data['user'].uid,
+            'tmp',
+            str(ufile)
+        )
+        res_path = os.path.join(
+            settings.USER_PROFILE_PATH,
+            self.validated_data['user'].uid,
+            'tmp',
+            'raw.jpg'
+        )
+        with open(file_path, 'wb+') as destination:
+            for chunk in ufile.chunks():
+                destination.write(chunk)
+        img = Image.open(file_path)
+        img.save(res_path)

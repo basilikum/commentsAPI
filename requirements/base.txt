@@ -4,10 +4,10 @@
 
 
 # Bleeding edge Django
-django==1.10.5
-djangorestframework==3.5.4
-djangorestframework-jwt==1.9.0
-django-filter==1.0.1
+django==1.11.1
+djangorestframework==3.6.3
+djangorestframework-jwt==1.10.0
+django-filter==1.0.4
 markdown==2.6.7
 coreapi==2.1.1
 django-cors-headers==1.2.0
@@ -31,3 +31,9 @@ pytz==2016.10
 # HTTP Requests
 requests==2.13.0
 requests-oauthlib==0.8.0
+
+# Files
+python-magic==0.4.13
+
+# Images
+Pillow==4.1.1

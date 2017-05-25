@@ -4,8 +4,8 @@
 from rest_framework import renderers
 
 
-class PNGRenderer(renderers.BaseRenderer):
-    media_type = 'image/png'
+class JPGRenderer(renderers.BaseRenderer):
+    media_type = 'image/jpg'
     format = 'png'
     charset = None
     render_style = 'binary'
