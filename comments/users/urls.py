@@ -10,9 +10,9 @@ urlpatterns = [
     url(r'^register', views.UserCreate.as_view()),
     url(r'^finalize', views.UserFinalize.as_view()),
     url(r'^user-exists', views.UserExists.as_view()),
-    url(r'^avatar/upload$', views.UserAvatar.as_view()),
-    url(r'^avatar/(?P<temp_id>[a-zA-Z0-9_\-]{5})$', views.UserAvatar.as_view()),
+    url(r'^avatar$', views.UserAvatarManage.as_view()),
+    url(r'^avatar/(?P<img_id>[a-zA-Z0-9_\-]{5}).jpg$', views.UserImage.as_view()),
     url(r'^(?P<uid>[a-zA-Z0-9_\-]{11})$', views.UserDetail.as_view()),
-    url(r'^(?P<uid>[a-zA-Z0-9_\-]{11})/avatar$', views.UserAvatarImg.as_view()),
+    url(r'^(?P<uid>[a-zA-Z0-9_\-]{11})/avatar.jpg$', views.UserAvatar.as_view()),
 ]
 
