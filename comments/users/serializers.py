@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import os
 import os.path
 
 import magic
@@ -16,6 +17,9 @@ from authentication.jwt_helper import (
     jwt_encode,
     get_payload,
 )
+
+from common.files import ensure
+from common.models import random_id
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -135,29 +139,29 @@ class UserAvatarUploadSerializer(serializers.Serializer):
 
     def save(self):
         ufile = self.validated_data['file']
-        file_path = os.path.join(
+        img_id = random_id(None, 5)
+        user_profile_path = os.path.join(
             settings.USER_PROFILE_PATH,
-            self.validated_data['user'].uid,
-            'tmp',
-            str(ufile)
+            self.validated_data['user'].uid
         )
-        res_path = os.path.join(
-            settings.USER_PROFILE_PATH,
-            self.validated_data['user'].uid,
-            'tmp',
-            'raw.jpg'
-        )
+        tmp_path = ensure(os.path.join(user_profile_path, 'tmp'))
+        file_path = os.path.join(tmp_path, str(ufile))
+        res_path = os.path.join(user_profile_path, '{}.jpg'.format(img_id))
         with open(file_path, 'wb+') as destination:
             for chunk in ufile.chunks():
                 destination.write(chunk)
         img = Image.open(file_path)
         img.save(res_path)
+        os.remove(file_path)
+        return {
+            'id': img_id
+        }
 
 
 class UserAvatarUpdateSerializer(serializers.Serializer):
     img_id = serializers.SlugField()
-    x0 = serializers.IntegerField(min_value=0)
-    y0 = serializers.IntegerField(min_value=0)
+    x = serializers.IntegerField(min_value=0)
+    y = serializers.IntegerField(min_value=0)
     size = serializers.IntegerField(min_value=1)
     user = serializers.PrimaryKeyRelatedField(
         default=serializers.CurrentUserDefault(),
@@ -173,16 +177,16 @@ class UserAvatarUpdateSerializer(serializers.Serializer):
         if not os.path.exists(file_path):
             raise serializers.ValidationError('File does not exist!')
         img = Image.open(file_path)
-        if data['x0'] >= img.size[0] or data['y0'] >= img.size[1]:
+        if data['x'] >= img.size[0] or data['y'] >= img.size[1]:
             raise serializers.ValidationError('Crop values exceed image size!')
-        data['size'] = min(data['size'], img.size[0] - data['x0'], img.size[1] - data['y0'])
+        data['size'] = min(data['size'], img.size[0] - data['x'], img.size[1] - data['y'])
         data['file_path'] = file_path
         return data
 
     def save(self):
         file_path = self.validated_data['file_path']
-        x0 = self.validated_data['x0']
-        y0 = self.validated_data['y0']
+        x0 = self.validated_data['x']
+        y0 = self.validated_data['y']
         x1 = x0 + self.validated_data['size']
         y1 = y0 + self.validated_data['size']
         img = Image.open(file_path)

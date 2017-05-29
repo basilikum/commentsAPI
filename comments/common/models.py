@@ -10,7 +10,7 @@ def random_id(model, size, field_name='id'):
     while True:
         mid = ''.join(choice(chars) for _ in range(size))
         kwargs = {field_name: mid}
-        if not model.objects.filter(**kwargs).exists():
+        if model is None or not model.objects.filter(**kwargs).exists():
             break
     return mid
 
