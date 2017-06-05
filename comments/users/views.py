@@ -5,11 +5,13 @@ from django.contrib.auth import get_user_model
 
 from rest_framework.generics import CreateAPIView, UpdateAPIView, RetrieveAPIView, GenericAPIView
 from rest_framework.mixins import CreateModelMixin, UpdateModelMixin
+from rest_framework.parsers import FormParser
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.status import HTTP_201_CREATED
 from rest_framework.views import APIView
 
+from common.parsers import MultiPartJSONParser
 from common.permissions import HasValidRecaptchaResponse
 from common.renderer import JPGRenderer
 
@@ -19,7 +21,6 @@ from .serializers import (
     UserFinalizeLocalSerializer,
     UserImageSerializer,
     UserAvatarSerializer,
-    UserAvatarUpdateSerializer,
     UserAvatarUploadSerializer
 )
 
@@ -59,6 +60,8 @@ class UserAvatar(APIView):
 
     def get(self, request, uid=0, format=None):
         size = self.request.query_params.get('size', 64)
+        if size == 'orig':
+            size = 0
         serializer = UserAvatarSerializer(data={
             'uid': uid,
             'size': size
@@ -67,32 +70,22 @@ class UserAvatar(APIView):
         return Response(serializer.validated_data)
 
 
-class UserImage(APIView):
-    permission_classes = (IsAuthenticated, )
-    renderer_classes = (JPGRenderer, )
+class UserAvatarUpload(APIView):
+    parser_classes = (MultiPartJSONParser, FormParser)
+    permission_classes = (IsAuthenticated,)
+    serializer_class = UserAvatarUploadSerializer
 
-    def get(self, request, img_id='', format=None):
-        serializer = UserImageSerializer(data={
-            'img_id': img_id
-        }, context={'request': request})
-        serializer.is_valid(raise_exception=True)
-        return Response(serializer.validated_data)
-
-
-class UserAvatarManage(CreateAPIView):
-
-    permission_classes = (IsAuthenticated, )
-
-    def get_serializer_class(self):
-        if self.request.method == 'POST':
-            return UserAvatarUploadSerializer
-        return UserAvatarUpdateSerializer
-
-    def get_serializer_context(self):
-        return {'request': self.request}
-
-    def patch(self, request, format=None):
-        serializer = self.get_serializer(data=request.data)
+    def post(self, request, format=None): # pylint: disable=W0613,W0622
+        print dir(request)
+        print request.data
+        print request.POST
+        print request.FILES
+        if 'parent' not in request.data:
+            request.data['parent'] = None
+        serializer = UserAvatarUploadSerializer(
+            data=request.data,
+            context={'request': request}
+        )
         serializer.is_valid(raise_exception=True)
         res = serializer.save()
-        return Response(res)
+        return Response(res, status=HTTP_201_CREATED)

@@ -3,6 +3,7 @@
 
 import os
 import os.path
+from cStringIO import StringIO
 
 import magic
 
@@ -78,7 +79,7 @@ class UserFinalizeLocalSerializer(serializers.Serializer):
 
 
 class UserAvatarSerializer(serializers.Serializer):
-    size = serializers.IntegerField(min_value=1)
+    size = serializers.IntegerField(min_value=0)
     uid = serializers.SlugField()
 
     def validate(self, data):
@@ -88,7 +89,7 @@ class UserAvatarSerializer(serializers.Serializer):
         file_path = os.path.join(
             settings.USER_PROFILE_PATH,
             data['uid'],
-            '{}.jpg'.format(data['size'])
+            '{}.jpg'.format(data['size']) if data['size'] > 0 else 'original.jpg'
         )
         if not os.path.exists(file_path):
             raise serializers.ValidationError('File does not exist!')
@@ -108,6 +109,7 @@ class UserImageSerializer(serializers.Serializer):
             data['user'].uid,
             '{}.jpg'.format(data['img_id'])
         )
+        print file_path
         if not os.path.exists(file_path):
             raise serializers.ValidationError('File does not exist!')
         return open(file_path, 'r')
@@ -115,6 +117,9 @@ class UserImageSerializer(serializers.Serializer):
 
 class UserAvatarUploadSerializer(serializers.Serializer):
     file = serializers.FileField()
+    x = serializers.IntegerField(min_value=0)
+    y = serializers.IntegerField(min_value=0)
+    size = serializers.IntegerField(min_value=1)
     user = serializers.PrimaryKeyRelatedField(
         default=serializers.CurrentUserDefault(),
         read_only=True
@@ -135,63 +140,45 @@ class UserAvatarUploadSerializer(serializers.Serializer):
         ufile.seek(0)
         if mimetype not in MIME_TYPES:
             raise serializers.ValidationError('not supported file type')
+        file_imgdata = StringIO(ufile.read())
+        ufile.seek(0)
+        img = Image.open(file_imgdata)
+        if data['x'] >= img.size[0] or data['y'] >= img.size[1]:
+            raise serializers.ValidationError('Crop values exceed image size!')
+        data['size'] = min(data['size'], img.size[0] - data['x'], img.size[1] - data['y'])
         return data
 
     def save(self):
         ufile = self.validated_data['file']
-        img_id = random_id(None, 5)
         user_profile_path = os.path.join(
             settings.USER_PROFILE_PATH,
             self.validated_data['user'].uid
         )
         tmp_path = ensure(os.path.join(user_profile_path, 'tmp'))
         file_path = os.path.join(tmp_path, str(ufile))
-        res_path = os.path.join(user_profile_path, '{}.jpg'.format(img_id))
+        res_path = os.path.join(user_profile_path, 'original.jpg')
         with open(file_path, 'wb+') as destination:
             for chunk in ufile.chunks():
                 destination.write(chunk)
         img = Image.open(file_path)
         img.save(res_path)
         os.remove(file_path)
+        self.crop(
+            res_path,
+            self.validated_data['x'],
+            self.validated_data['y'],
+            self.validated_data['size']
+        )
         return {
-            'id': img_id
+            'success': True
         }
 
-
-class UserAvatarUpdateSerializer(serializers.Serializer):
-    img_id = serializers.SlugField()
-    x = serializers.IntegerField(min_value=0)
-    y = serializers.IntegerField(min_value=0)
-    size = serializers.IntegerField(min_value=1)
-    user = serializers.PrimaryKeyRelatedField(
-        default=serializers.CurrentUserDefault(),
-        read_only=True
-    )
-
-    def validate(self, data):
-        file_path = os.path.join(
-            settings.USER_PROFILE_PATH,
-            data['user'].uid,
-            '{}.jpg'.format(data['img_id'])
-        )
-        if not os.path.exists(file_path):
-            raise serializers.ValidationError('File does not exist!')
-        img = Image.open(file_path)
-        if data['x'] >= img.size[0] or data['y'] >= img.size[1]:
-            raise serializers.ValidationError('Crop values exceed image size!')
-        data['size'] = min(data['size'], img.size[0] - data['x'], img.size[1] - data['y'])
-        data['file_path'] = file_path
-        return data
-
-    def save(self):
-        file_path = self.validated_data['file_path']
-        x0 = self.validated_data['x']
-        y0 = self.validated_data['y']
-        x1 = x0 + self.validated_data['size']
-        y1 = y0 + self.validated_data['size']
+    def crop(self, file_path, x0, y0, size):
+        x1 = x0 + size
+        y1 = y0 + size
         img = Image.open(file_path)
         img = img.crop((x0, y0, x1, y1))
-        for size in [64, 256]:
+        for size in [64, 128, 256]:
             target_path = os.path.join(
                 settings.USER_PROFILE_PATH,
                 self.validated_data['user'].uid,

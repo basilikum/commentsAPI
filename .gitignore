@@ -71,3 +71,6 @@ target/
 .nfs*
 *.sublime-workspace
 *~
+
+
+comments/media
