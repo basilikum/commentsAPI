@@ -24,12 +24,11 @@ from common.models import random_id
 
 
 class UserSerializer(serializers.ModelSerializer):
-    name = serializers.CharField(source='username')
     has_avatar = serializers.SerializerMethodField()
 
     class Meta:
         model = get_user_model()
-        fields = ('uid', 'name', 'created', 'has_avatar')
+        fields = ('uid', 'username', 'created', 'has_avatar')
 
     def get_has_avatar(self, obj):
         file_path = os.path.join(
@@ -39,6 +38,32 @@ class UserSerializer(serializers.ModelSerializer):
         )
         return os.path.exists(file_path)
 
+
+class UserDetailSerializer(serializers.ModelSerializer):
+    has_avatar = serializers.SerializerMethodField()
+    social_type = serializers.SerializerMethodField()
+
+    class Meta:
+        model = get_user_model()
+        fields = ('uid', 'username', 'created', 'email', 'social_type', 'has_avatar')
+        read_only_fields = ('uid', 'created')
+
+    def get_has_avatar(self, obj):
+        file_path = os.path.join(
+            settings.USER_PROFILE_PATH,
+            obj.uid,
+            '{}.png'.format(64)
+        )
+        return os.path.exists(file_path)
+
+    def get_social_type(self, obj):
+        if obj.google:
+            return 'google'
+        if obj.twitter:
+            return 'twitter'
+        if obj.facebook:
+            return 'facebook'
+        return ''
 
 class UserCreateLocalSerializer(serializers.Serializer):
     username = serializers.CharField(max_length=32, min_length=3)

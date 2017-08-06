@@ -3,7 +3,7 @@
 
 from django.contrib.auth import get_user_model
 
-from rest_framework.generics import CreateAPIView, UpdateAPIView, RetrieveAPIView, GenericAPIView
+from rest_framework.generics import CreateAPIView, UpdateAPIView, RetrieveAPIView, RetrieveUpdateAPIView, GenericAPIView
 from rest_framework.mixins import CreateModelMixin, UpdateModelMixin
 from rest_framework.parsers import FormParser
 from rest_framework.permissions import IsAuthenticated
@@ -18,6 +18,7 @@ from common.renderer import JPGRenderer
 from .serializers import (
     UserSerializer,
     UserCreateLocalSerializer,
+    UserDetailSerializer,
     UserFinalizeLocalSerializer,
     UserImageSerializer,
     UserAvatarSerializer,
@@ -52,6 +53,15 @@ class UserDetail(RetrieveAPIView):
     queryset = get_user_model().objects.all()
     serializer_class = UserSerializer
     lookup_field = 'uid'
+
+
+class UserMe(RetrieveUpdateAPIView):
+    permission_classes = (IsAuthenticated, )
+    queryset = get_user_model().objects.all()
+    serializer_class = UserDetailSerializer
+
+    def get_object(self):
+        return self.request.user
 
 
 class UserAvatar(APIView):
